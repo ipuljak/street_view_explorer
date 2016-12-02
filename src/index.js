@@ -9,7 +9,8 @@ import reducers from './reducers';
 // Components
 import App from './core';
 import Welcome from './routes/home/welcome';
-import Types from './routes/types/containers/types';
+import Type from './routes/Type';
+import View from './routes/View';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
@@ -19,7 +20,8 @@ ReactDOM.render(
         <Router history={browserHistory}>
             <Route path='/' component={App}>
                 <IndexRoute component={Welcome} />
-                <Route component={Types} />
+                <Route name='types' path='/:typename' component={Type} />
+                <Route name='view' path='/location/:viewname' component={View} />
             </Route>
         </Router>
     </Provider>
