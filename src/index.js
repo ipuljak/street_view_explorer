@@ -7,8 +7,9 @@ import reduxThunk from 'redux-thunk';
 import reducers from './reducers';
 
 // Components
-import App from './components/App';
-import Welcome from './components/welcome';
+import App from './core';
+import Welcome from './routes/home/welcome';
+import Types from './routes/types/containers/types';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
@@ -18,6 +19,7 @@ ReactDOM.render(
         <Router history={browserHistory}>
             <Route path='/' component={App}>
                 <IndexRoute component={Welcome} />
+                <Route component={Types} />
             </Route>
         </Router>
     </Provider>
