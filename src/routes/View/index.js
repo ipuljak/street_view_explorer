@@ -6,13 +6,13 @@ import * as actions from '../../actions';
 import Street from './street_view';
 
 class View extends Component {
-    componentWillMount() {
-        this.props.getLocationByID(this.props.params.viewname);
-    }
+    // componentWillMount() {
+    //     this.props.getLocationByID(this.props.params.viewname);
+    // }
 
-    componentDidUpdate() {
-        // renderUpdate();
-    }
+    // componentDidUpdate() {
+    //     // renderUpdate();
+    // }
     
     render() {
         return (
