@@ -5,12 +5,35 @@
 //   font-family: 'Sintony', sans-serif;
 // }
 
+h1 {
+    margin: 25px auto 0 auto;
+    font-size: 5em;
+    color: white;
+    font-family: 'Kaushan Script', cursive;
+    text-shadow: 2px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000, -2px 0 0 #000;
+}
+
 .navbar {
   border-radius: 0px;
   padding: 0;
+  margin-bottom: 0;
 }
 
 .App {
   text-align: center;
 }
 
+#left {
+  text-align: center;
+  height: 75vh;
+  overflow-y: auto; 
+}
+
+.locationGrid p {
+  font-size: 0.8em;
+  margin-bottom: 0;
+}
+
+.cityCountry {
+  font-size: 0.7em;
+}

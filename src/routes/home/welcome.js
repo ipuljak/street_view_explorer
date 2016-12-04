@@ -3,8 +3,6 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import * as actions from '../../actions';
 
-import './home.scss';
-
 class Welcome extends Component {
     componentWillMount() {
         this.props.getTypes();

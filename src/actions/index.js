@@ -4,7 +4,7 @@ import axios from 'axios';
 import {
     FETCH_TYPES,
     FETCH_TYPE_DATA,
-    LIST_VIEWS,
+    VIEWS_BY_TYPE,
     CURRENT_VIEW
 } from './types';
 
@@ -51,7 +51,7 @@ export function getLocationsByType(type) {
         axios.get(API_CALL)
             .then(response => {
                 dispatch({
-                    type: LIST_VIEWS,
+                    type: VIEWS_BY_TYPE,
                     payload: response.data
                 });
             });
@@ -83,4 +83,5 @@ export function setView(location) {
         payload: location
     };
 }
+
 
