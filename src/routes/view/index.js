@@ -80,12 +80,13 @@ class Type extends Component {
             <div>
                 {this.renderTitle()}
                 <hr />
-                <div className="col-md-9" id="left">
+                <div className="col-md-10" id="left">
                     {this.renderView(currentView)}
                 </div>  
-                <div className="col-md-3" id="right">
+                <div className="col-md-2" id="right">
                     {this.renderLocationData(allviews)}
-                </div>        
+                </div>
+                <hr />     
             </div>
         );
     }
