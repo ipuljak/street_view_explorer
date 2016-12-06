@@ -12,9 +12,11 @@ class Welcome extends Component {
         if (this.props.types) {
             return this.props.types.map((item) => {
                 return (
-                    <li key={item} className="list-group-item">
-                        <Link to={`/${item}`}>{item}</Link>
-                    </li>
+                    <Link to={`/${item}`} style={{ textDecoration: 'none', color: 'black' }}>
+                        <li key={item} className="list-group-item">
+                            {item}
+                        </li>
+                    </Link>
                 );
             });
         }
