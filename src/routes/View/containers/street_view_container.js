@@ -68,10 +68,10 @@ class ReactStreetview extends React.Component {
 		
 	render() {
 		return <div
-			style = {{
+			style={{
 				height: '100%'
 			}}
-			id = {this.state.domElementId}
+			id={this.state.domElementId}
 		></div>;
 	}
 }

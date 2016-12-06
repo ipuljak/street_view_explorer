@@ -13,7 +13,6 @@ const loadData = props => {
 class Type extends Component {
     static propTypes = {
         typeName: PropTypes.string.isRequired,
-        currentView: PropTypes.object.isRequired,
         getLocationsByType: PropTypes.func.isRequired,
         setView: PropTypes.func.isRequired
     }
@@ -29,7 +28,7 @@ class Type extends Component {
     }
 
     renderTitle() {
-        const {allviews, currentView, typeName} = this.props;
+        const {allviews, currentView} = this.props;
 
         if (!currentView) {
             if (!allviews) {
@@ -81,10 +80,10 @@ class Type extends Component {
             <div>
                 {this.renderTitle()}
                 <hr />
-                <div className="col-md-10" id="left">
+                <div className="col-md-9" id="left">
                     {this.renderView(currentView)}
                 </div>  
-                <div className="col-md-2" id="right">
+                <div className="col-md-3" id="right">
                     {this.renderLocationData(allviews)}
                 </div>        
             </div>

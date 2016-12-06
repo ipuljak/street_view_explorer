@@ -24,7 +24,7 @@ class Welcome extends Component {
         return (
             <div>
                 <div className="">
-                    <h1>The Armchair Tourist</h1>
+                    <img className="logo" src="http://i.imgur.com/Y8V8CbE.png" />
                     <p>Tap, swipe, and scroll away as you window shop your dream tourist hotspot!</p>
                 </div>
 

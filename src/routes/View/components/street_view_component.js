@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import ReactStreetview from '../containers/street_view_container';
 import {apiKEY} from '../../../config.js';
 
@@ -21,8 +21,9 @@ const Street = (item) => {
 
     return (
         <div style={{
-            width: '70%',
-            height: '50vh',
+            margin: '0 auto',
+            width: '100%',
+            height: '65vh',
             backgroundColor: '#EEEEEE'
         }}>
             <ReactStreetview

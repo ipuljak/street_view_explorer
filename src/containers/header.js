@@ -4,6 +4,7 @@ import {Link} from 'react-router';
 class Header extends Component {
     renderLinks() {
         //if (this.props.authenticated) {
+            // FIX WHEN YOU ADD AUTH
         if(false) {
             // show a link to sign out
             return (
@@ -29,7 +30,7 @@ class Header extends Component {
 
     render() {
         return (
-            <nav className="navbar navbar-light">
+            <nav className="navbar navbar-inverse">
                 <div className="container-fluid">
                     <div className="navbar-header">
                         <Link to="/" className="navbar-brand">The Armchair Tourist</Link>

@@ -19,6 +19,10 @@ h1 {
   margin-bottom: 0;
 }
 
+.logo {
+  max-width: 600px;
+}
+
 .App {
   text-align: center;
 }
@@ -42,4 +46,42 @@ h1 {
   width: 400px;
   height: 400px;
   background-color: #EEEEEE;
+}
+
+.list-group-item:hover {
+  cursor: pointer;
+  background-color: #e2e2e2;
+}
+
+.about {
+  font-size: 0.9em;
+  text-align: left;
+  padding: 5px;
+  border: 1px solid #e2e2e2;
+}
+
+// Clearfix
+.about:after {
+   content: " "; /* Older browser do not support empty content */
+   visibility: hidden;
+   display: block;
+   height: 0;
+   clear: both;
+}
+
+.about img {
+  max-height: 300px;
+  float: left;
+  margin-right: 20px;
+  border-radius: 5px;
+}
+
+.about span {
+  display: block;
+  margin-top: 10px; 
+}
+
+.floatChild {
+  float: left;
+  margin-right: 20px;
 }
