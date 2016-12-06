@@ -1,28 +1,29 @@
 import React, {Component} from 'react';
-import ReactStreetview from 'react-streetview';
+import ReactStreetview from '../containers/street_view_container';
+import {apiKEY} from '../../../config.js';
 
-const Street = (props) => {
-    console.log("PROPS", props);
-    const apiKEY = 'AIzaSyBXgICZ3gA1RMmwCACIn1CA5bD6e0sbJuQ';
+const Street = (item) => {
+    const view = item.view;
+
     const viewOptions = {
         position: {
-            lat: 43.6779984,
-            lng: -79.4094524
+            lat: view.lat,
+            lng: view.lng
         },
         pov: {
-            heading: 300,
-            pitch: 20
+            heading: view.heading,
+            pitch: view.pitch
         },
-        zoom: 0,
+        zoom: view.zoom,
         showRoadLabels: false,
         addressControl: false
     };
 
     return (
         <div style={{
-            width: '1200px',
-            height: '700px',
-            backgroundColor: '#eeeeee'
+            width: '70%',
+            height: '50vh',
+            backgroundColor: '#EEEEEE'
         }}>
             <ReactStreetview
                 apiKey={apiKEY}

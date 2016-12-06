@@ -1,9 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router';
 import * as actions from '../../actions';
 
-import LocationSelector from './view';
+import LocationSelector from './components/selector';
+import View from './components/view';
 
 const loadData = props => {
     const {typeName} = props;
@@ -28,38 +28,49 @@ class Type extends Component {
         }
     }
 
+    renderTitle() {
+        const {allviews, currentView, typeName} = this.props;
+
+        if (!currentView) {
+            if (!allviews) {
+                return <h2>Loading...</h2>
+            }
+
+            return <h3>Select a location to get started!</h3>
+        }
+
+        return <h2>{currentView.name}</h2>
+
+    }
+
     renderLocationData(location) {
         const {setView} = this.props;
 
         return location.map((item) => {
             return (
-                <div onClick={() => setView(item)}>
-                    <LocationSelector key={item._id} props={item} />
+                <div key={item._id} onClick={() => setView(item)}>
+                    <LocationSelector props={item} />
                 </div>
             );
         });
     }
 
-    renderView() {
-        const {currentView} = this.props;
-    
-        if (!currentView) {
+    renderView(view) { 
+        if (!view) {
             return (
-                <div class="list-group">
-                    Just a temporary div
-                </div>
+                <div></div>
             );
         }
 
-        // WRITE THIS CODE NEXT!
         return (
-            <div>HELLOOOO?</div>
+            <View props={view} />
         );
     }
         
     render() {
-        const {allviews, typeName} = this.props;
+        const {allviews, currentView, typeName} = this.props;
 
+        // Notfy the user that the locations are loading if they aren't ready'
         if (!allviews) {
             return (
                 <h2><i>Loading {typeName} locations...</i></h2>
@@ -68,14 +79,14 @@ class Type extends Component {
 
         return (
             <div>
-                <h2>{typeName}</h2>
+                {this.renderTitle()}
                 <hr />
-                <div className="col-md-2" id="left">
+                <div className="col-md-10" id="left">
+                    {this.renderView(currentView)}
+                </div>  
+                <div className="col-md-2" id="right">
                     {this.renderLocationData(allviews)}
-                </div>
-                <div className="col-md-10" id="right">
-                    {this.renderView()}
-                </div>            
+                </div>        
             </div>
         );
     }

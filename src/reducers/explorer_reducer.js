@@ -19,7 +19,7 @@ export default function(state = {}, action) {
         case CURRENT_VIEW:
             console.log("CURRENT VIEW REDUCER", action.payload);
             return {...state, view: action.payload};
+        default:
+            return state;
     }
-
-    return state;
 }

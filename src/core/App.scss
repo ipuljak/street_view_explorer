@@ -23,7 +23,7 @@ h1 {
   text-align: center;
 }
 
-#left {
+#right {
   text-align: center;
   height: 75vh;
   overflow-y: auto; 
@@ -36,4 +36,10 @@ h1 {
 
 .cityCountry {
   font-size: 0.7em;
+}
+
+.mapSize {
+  width: 400px;
+  height: 400px;
+  background-color: #EEEEEE;
 }

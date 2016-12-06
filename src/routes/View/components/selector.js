@@ -1,5 +1,4 @@
-import React, {Component} from 'react';
-import {setView} from '../../actions';
+import React from 'react';
 
 const LocationSelector = (item) => {
     return (
