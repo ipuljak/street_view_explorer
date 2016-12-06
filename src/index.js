@@ -25,7 +25,7 @@ ReactDOM.render(
                 <IndexRoute component={Welcome} />
                 <Route name='login' path='/signin' component={Signin} />
                 <Route name='signup' path='/signup' component={Signup} />
-                <Route name='types' path='/:typename' component={View} />
+                <Route name='term' path='/:term' component={View} />
             </Route>
         </Router>
     </Provider>

@@ -6,14 +6,14 @@ import LocationSelector from './components/selector';
 import View from './components/view';
 
 const loadData = props => {
-    const {typeName} = props;
-    props.getLocationsByType(typeName);
+    const {term} = props;
+    props.searchLocations(term);
 }
 
 class Type extends Component {
     static propTypes = {
-        typeName: PropTypes.string.isRequired,
-        getLocationsByType: PropTypes.func.isRequired,
+        term: PropTypes.string.isRequired,
+        searchLocations: PropTypes.func.isRequired,
         setView: PropTypes.func.isRequired
     }
 
@@ -22,7 +22,7 @@ class Type extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.typeName !== this.props.typeName) {
+        if (nextProps.term !== this.props.term) {
             loadData(nextProps);
         }
     }
@@ -67,12 +67,12 @@ class Type extends Component {
     }
         
     render() {
-        const {allviews, currentView, typeName} = this.props;
+        const {allviews, currentView, term} = this.props;
 
         // Notfy the user that the locations are loading if they aren't ready'
         if (!allviews) {
             return (
-                <h2><i>Loading {typeName} locations...</i></h2>
+                <h2><i>Loading {term} locations...</i></h2>
             );
         }
 
@@ -96,7 +96,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
         allviews: state.explorer.allviews,
         currentView: state.explorer.view,
-        typeName: ownProps.params.typename
+        term: ownProps.params.term
     };
 };
 
