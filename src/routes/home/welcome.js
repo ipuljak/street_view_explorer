@@ -30,7 +30,7 @@ class Welcome extends Component {
                         className="logo" 
                         src="http://i.imgur.com/Y8V8CbE.png"
                         alt="" />
-                    <p>Tap, swipe, and scroll away as you window shop your dream tourist hotspot!</p>
+                    <p>Tap, swipe, and scroll as you window shop your dream tourist getaway!</p>
                 </div>
 
                 <div 
