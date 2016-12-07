@@ -7,7 +7,8 @@ import {
     CURRENT_VIEW
 } from './types';
 
-const API_URL = 'http://localhost:3001/api/street_view/';
+const API_URL = 'http://138.197.143.248:3001/api/street_view';
+//const API_URL = 'http://localhost:3001/api/street_view/';
 //const API_URL = 'http://192.168.1.2:3001/api/street_view/';
 
 /**
