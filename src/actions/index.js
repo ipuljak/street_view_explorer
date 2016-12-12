@@ -4,12 +4,11 @@ import axios from 'axios';
 import {
     FETCH_TYPES,
     VIEWS_BY_TYPE,
+    CURRENT_COUNTRY,
     CURRENT_VIEW
 } from './types';
 
 const API_URL = 'http://138.197.143.248:3001/api/street_view';
-//const API_URL = 'http://localhost:3001/api/street_view/';
-//const API_URL = 'http://192.168.1.2:3001/api/street_view/';
 
 /**
  *  Fetch all the distinct types of locations from the API server.
@@ -21,6 +20,22 @@ export function getDistincts() {
             .then(response => {
                 dispatch({
                     type: FETCH_TYPES,
+                    payload: response.data
+                });
+            });
+    }
+}
+
+/**
+ *  Given a country, fetch it's information and cities.
+ */
+export function setCountry(term) {
+    const API_CALL = `${API_URL}/get_country_info?country=${term}`;
+    return function(dispatch) {
+        axios.get(API_CALL)
+            .then(response => {
+                dispatch({
+                    type: CURRENT_COUNTRY,
                     payload: response.data
                 });
             });

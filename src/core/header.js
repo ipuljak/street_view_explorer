@@ -1,11 +1,18 @@
+/**
+ *  TO DO:
+ *      - add authentication
+ *      - styling issues
+ *      - code clean-up
+ */
+
 import React, {Component} from 'react';
 import {Link} from 'react-router';
 
 class Header extends Component {
     renderLinks() {
         //if (this.props.authenticated) {
-            // FIX WHEN YOU ADD AUTH
-        if(false) {
+            // FUTURE UPDATE: FIX WHEN YOU ADD AUTH
+        if (false) {
             // show a link to sign out
             return (
                 <li className="nav-item">

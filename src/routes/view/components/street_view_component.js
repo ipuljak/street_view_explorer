@@ -2,6 +2,14 @@ import React from 'react';
 import ReactStreetview from '../containers/street_view_container';
 import {apiKEY} from '../../../config.js';
 
+/**
+ *  Functional component that contains the structure of the street view window.
+ *  All of the parameters for the desired location are passed through here.
+ *  The options to be included for Google's API can be set here.
+ *  
+ *  TO DO:
+ *      find a way to include a clickable mini-map on the street view window
+ */
 const Street = (item) => {
     const view = item.view;
 

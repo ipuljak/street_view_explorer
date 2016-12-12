@@ -6,17 +6,16 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import reduxThunk from 'redux-thunk';
 import reducers from './reducers';
 
-// Components
+// Components to route
 import App from './core';
 import Welcome from './routes/home/welcome';
 import Signin from './routes/signin';
 import Signup from './routes/signup';
+import Country from './routes/countries';
 import View from './routes/view';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
-
-//<Route name='view' path='/location/:viewname' component={View} />
 
 ReactDOM.render(
     <Provider store={store}>
@@ -25,7 +24,8 @@ ReactDOM.render(
                 <IndexRoute component={Welcome} />
                 <Route name='login' path='/signin' component={Signin} />
                 <Route name='signup' path='/signup' component={Signup} />
-                <Route name='term' path='/:term' component={View} />
+                <Route name='country' path='/country/:country' component={Country} />
+                <Route name='term' path='/location/:term' component={View} />
             </Route>
         </Router>
     </Provider>
