@@ -1,65 +1,58 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router';
 import * as actions from '../../actions';
 
-import CountryView from './components/country_view_component';
-
-/** 
- *  Function which when given a parameter term, sets the country so that it's
- *  view may be rendered. Will be called each time the component receives new
- *  props (primarily for asynchronous loading given parameters).
- */
-const loadData = props => {
-    const {term} = props;
-    props.setCountry(term);
-}
-
-/**
- *  Class component Country which loads and then renders the desired country 
- *  given a country paramater (term) from the Link route on the homepage or 
- *  manually entered in the url by the user.
- *      i.e. /country/:term
- */
-class Country extends Component {
-    static propTypes = {
-        term: PropTypes.string.isRequired,
-        setCountry: PropTypes.func.isRequired
+class Countries extends Component {
+  componentWillMount() {
+    if (!this.props.types) {
+      this.props.getDistincts();
     }
+  }
 
-    componentWillMount() {
-        loadData(this.props);
-    }
+  componentDidMount() {
+    window.scrollTo(0,0);
+  }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.term !== this.props.term) {
-            loadData(nextProps);
-        }
-    }
-
-    render() {
-        const {country} = this.props;
-
-        if (!country) {
-            // FUTURE UPDATE: render an animated loading icon instead
-            return (
-                <h2>Loading...</h2>
-            );
-        }
-        else {
-            return (
-                <div>
-                    <CountryView props={country} />
+  renderCountries() {
+    if (this.props.types) {
+      return this.props.types['country'].map((item) => {
+        return (
+          <Link 
+            key={item.name}
+            to={`/country/${item.name}`} 
+            style={{ textDecoration: 'none', color: 'black' }}>
+            <div className="col-lg-4 col-md-6">
+                <div className="thumbnail">
+                    <img src={item.data.image} alt="" />
+                    <h4>{item.name}</h4>
                 </div>
-            );
-        }
+            </div>
+        </Link>
+        );
+      });
     }
+  }
+
+  render() {
+    return (
+      <div className="viewpage container-fluid">
+          <div className="col-lg-12 text-center">
+              <h2 className="section-heading">Countries of the World</h2>
+              <hr className="primary" />
+          </div>
+          <div className="row">
+              {this.renderCountries()}
+          </div>
+      </div>
+    );
+  }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    return {
-        country: state.explorer.country,
-        term: ownProps.params.country
-    };
+function mapStateToProps(state) {
+  return {
+    types: state.explorer.types
+  }
 }
 
-export default connect(mapStateToProps, actions)(Country);
+export default connect(mapStateToProps, actions)(Countries);

@@ -8,10 +8,12 @@ import reducers from './reducers';
 
 // Components to route
 import App from './core';
-import Welcome from './routes/home/welcome';
+import Home from './routes/home';
 import Signin from './routes/signin';
 import Signup from './routes/signup';
-import Country from './routes/countries';
+import Countries from './routes/countries';
+import Categories from './routes/categories';
+import Country from './routes/country';
 import View from './routes/view';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
@@ -21,9 +23,11 @@ ReactDOM.render(
     <Provider store={store}>
         <Router history={browserHistory}>
             <Route path='/' component={App}>
-                <IndexRoute component={Welcome} />
+                <IndexRoute component={Home} />
                 <Route name='login' path='/signin' component={Signin} />
                 <Route name='signup' path='/signup' component={Signup} />
+                <Route name='countries' path='/countries' component={Countries} />
+                <Route name='categories' path='/categories' component={Categories} />
                 <Route name='country' path='/country/:country' component={Country} />
                 <Route name='term' path='/location/:term' component={View} />
             </Route>

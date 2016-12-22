@@ -7,6 +7,8 @@
 
 import React, {Component} from 'react';
 import {Link} from 'react-router';
+import {Navbar, Nav, NavItem} from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 class Header extends Component {
     renderLinks() {
@@ -15,40 +17,37 @@ class Header extends Component {
         if (false) {
             // show a link to sign out
             return (
-                <li className="nav-item">
-                    <Link to="/signout" className="nav-link">Sign Out</Link>
-                </li>
+                <LinkContainer to="/signout"><NavItem>Sign Out <i className="fa fa-sign-out"></i></NavItem></LinkContainer>
             );
         } else {
             // show a link to sign in or sign up
             // can return a list of components rather than just enclose everything in a div
             // hardcode the key because these components are static
             return [
-                <li className="nav-item" key={1}>
-                    <Link to="/signin">Sign In</Link>
-                </li>,
-
-                <li className="nav-item" key={2}>
-                    <Link to="/signup">Sign Up</Link>
-                </li>
+                <LinkContainer to="/signin" key={1}><NavItem>Sign In <i className="fa fa-sign-in"></i></NavItem></LinkContainer>,
+                <LinkContainer to="/signup" key={2}><NavItem>Register <i className="fa fa-user-plus"></i></NavItem></LinkContainer>
             ];
         }
     }
 
     render() {
         return (
-            <nav className="navbar navbar-inverse">
-                <div className="container-fluid">
-                    <div className="navbar-header">
-                        <Link to="/" className="navbar-brand">The Armchair Tourist</Link>
-                    </div>
-                    <div className="collapse navbar-collapse">
-                        <ul className="nav navbar-nav navbar-right">
-                            {this.renderLinks()}
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+            <Navbar className="navbar-default navbar-fixed-top navbar-settings" fluid collapseOnSelect>
+                <Navbar.Header>
+                <Navbar.Brand>
+                    <Link to="/"><i className="fa fa-street-view"></i> The Street View Tourist</Link>
+                </Navbar.Brand>
+                <Navbar.Toggle />
+                </Navbar.Header>
+                <Navbar.Collapse>
+                <Nav pullRight>
+                    <LinkContainer to="/"><NavItem>Home</NavItem></LinkContainer>
+                    <LinkContainer to="/countries"><NavItem>Countries</NavItem></LinkContainer>
+                    <LinkContainer to="/categories"><NavItem>Categories</NavItem></LinkContainer>
+                    {this.renderLinks()}
+                </Nav>
+                </Navbar.Collapse>
+            </Navbar>
         );
     }
 }

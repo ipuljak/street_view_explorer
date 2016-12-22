@@ -99,7 +99,7 @@ class Type extends Component {
         }
 
         return (
-            <div>
+            <div className="container viewpage">
                 {this.renderTitle()}
                 <hr />
                 <div className="col-md-10" id="left">

@@ -53,12 +53,16 @@
   "dependencies": {
     "axios": "^0.15.3",
     "react": "^15.4.1",
+    "react-bootstrap": "^0.30.7",
     "react-dom": "^15.4.1",
     "react-newline-to-break": "^1.0.6",
     "react-photo-gallery": "^4.2.15",
     "react-redux": "^4.4.6",
     "react-router": "^3.0.0",
+    "react-router-bootstrap": "^0.23.1",
     "react-router-redux": "^4.0.7",
+    "react-scroll": "^1.4.4",
+    "react-scrollchor": "^2.2.0",
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0"
   },
