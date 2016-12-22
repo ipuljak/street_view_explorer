@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import * as actions from '../../actions';
 
-class Categories extends Component {
+class Countries extends Component {
   componentWillMount() {
     if (!this.props.types) {
       this.props.getDistincts();
@@ -11,25 +11,24 @@ class Categories extends Component {
   }
 
   componentDidMount() {
-      window.scrollTo(0,0);
+    window.scrollTo(0,0);
   }
 
-  capitalize(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-
-  renderTypes() {
+  renderCategories() {
     if (this.props.types) {
       return this.props.types['type'].map((item) => {
         return (
           <Link 
-            key={item}
-            to={`/location/${item}`} 
+            key={item.name}
+            to={`/location/${item.name.toLowerCase()}`} 
             style={{ textDecoration: 'none', color: 'black' }}>
-            <div className="col-md-2 col-xs-6 center selectable">
-                <p>{this.capitalize(item)}</p>
+            <div className="col-lg-4 col-md-6">
+                <div className="thumbnail">
+                    <img src={item.data.image} alt="" />
+                    <h4>{item.name}</h4>
+                </div>
             </div>
-         </Link>
+        </Link>
         );
       });
     }
@@ -37,19 +36,17 @@ class Categories extends Component {
 
   render() {
     return (
-      <div className="row viewpage">
-        <div className="col-lg-8 col-lg-offset-2 text-center">
-            <h2 className="section-heading">Categories</h2>
-            <hr className="light" />
+      <div className="viewpage">
+        <div className="container-fluid">
+            <div className="col-lg-12 text-center">
+                <h2 className="section-heading">Global Categories</h2>
+                <hr className="primary" />
+            </div>
             <div className="row">
-                <div className="well">
-                    <div className="row">
-                        {this.renderTypes()}
-                    </div>
-                </div>
+                {this.renderCategories()}
             </div>
         </div>
-    </div>
+      </div>
     );
   }
 }
@@ -60,4 +57,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, actions)(Categories);
+export default connect(mapStateToProps, actions)(Countries);
