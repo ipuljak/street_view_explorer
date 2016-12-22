@@ -10,6 +10,8 @@ import {Link} from 'react-router';
 import {Navbar, Nav, NavItem} from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
+import './header.css';
+
 class Header extends Component {
     renderLinks() {
         //if (this.props.authenticated) {

@@ -36,14 +36,16 @@ class Countries extends Component {
 
   render() {
     return (
-      <div className="viewpage container-fluid">
-          <div className="col-lg-12 text-center">
-              <h2 className="section-heading">Countries of the World</h2>
-              <hr className="primary" />
-          </div>
-          <div className="row">
-              {this.renderCountries()}
-          </div>
+      <div className="viewpage">
+        <div className="container-fluid">
+            <div className="col-lg-12 text-center">
+                <h2 className="section-heading">Countries of the World</h2>
+                <hr className="primary" />
+            </div>
+            <div className="row">
+                {this.renderCountries()}
+            </div>
+        </div>
       </div>
     );
   }
