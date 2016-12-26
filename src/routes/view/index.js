@@ -94,7 +94,7 @@ class Type extends Component {
         // Notfy the user that the locations are loading if they aren't ready'
         if (!allviews) {
             return (
-                <h2><i>Oops! Something went wrong.</i></h2>
+                <h2><i>Oops! Something went wrong. </i></h2>
             );
         }
 
