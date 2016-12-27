@@ -44,7 +44,7 @@ class Home extends Component {
                         <h1 id="homeHeading"><i className="fa fa-street-view"></i> The Street View Tourist</h1>
                         <hr />
                         <p>Tap, swipe, and scroll as you window shop your dream getaway!</p>
-                        <Scrollchor to="#about"><button className="btn btn-primary btn-xl">Get Started</button></Scrollchor>
+                        <Scrollchor to="#about"><a className="btn btn-primary btn-xl btn-logo">Get Started</a></Scrollchor>
                     </div>
                 </div>
             </div>
