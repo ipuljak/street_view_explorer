@@ -6,6 +6,7 @@
  */
 
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import {Navbar, Nav, NavItem} from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -14,9 +15,7 @@ import './header.css';
 
 class Header extends Component {
     renderLinks() {
-        //if (this.props.authenticated) {
-            // FUTURE UPDATE: FIX WHEN YOU ADD AUTH
-        if (false) {
+        if (this.props.authenticated) {
             // show a link to sign out
             return (
                 <LinkContainer to="/signout"><NavItem>Sign Out <i className="fa fa-sign-out"></i></NavItem></LinkContainer>
@@ -54,11 +53,9 @@ class Header extends Component {
     }
 }
 
-// function mapStateToProps(state) {
-//     return {
-//         authenticated: state.auth.authenticated
-//     };
-// }
-// export default connect(mapStateToProps)(Header);
-
-export default Header;
+function mapStateToProps(state) {
+    return {
+        authenticated: state.auth.authenticated
+    };
+}
+export default connect(mapStateToProps)(Header);

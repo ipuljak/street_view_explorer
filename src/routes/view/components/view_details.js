@@ -26,21 +26,30 @@ const cleanText = (text) => {
  *      - implement a like/dislike rating system
  *      - implement a favouriting system
  */
-const View = (view) => {
-    const info = cleanText(view.props.data.info);
+
+const ViewDetails = (props) => {
+    // Do not load anything in if there are no views
+    if (!props.cur) {
+        return (
+            <div>There is no view to display.</div>
+        );
+    }
+
+    const info = cleanText(props.cur.data.info);
+
     return (
         <div className="view">
-            <Street view={view.props.view} />
+            <Street view={props.cur.view} />
             <hr />
             <div className="about">
                 <img 
                     className="aboutPic" 
-                    src={view.props.data.image} 
+                    src={props.cur.data.image} 
                     role="presentation" />
                 <p> 
                     {nl2br(info)} 
                     <span>
-                        Read more <a target="_blank" href={view.props.data.link}>here</a>.
+                        Read more <a target="_blank" href={props.cur.data.link}>here</a>.
                     </span>
                 </p>
             </div>
@@ -51,4 +60,4 @@ const View = (view) => {
     );
 }
 
-export default View;
+export default ViewDetails;

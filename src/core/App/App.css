@@ -295,8 +295,6 @@ fieldset[disabled] .btn-primary.active {
 
 .viewpage {
   background: white;
-  background-size: 100% auto;
-  background-attachment: fixed;
   padding-top: 75px;
 }
 

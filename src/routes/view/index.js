@@ -3,16 +3,16 @@ import {connect} from 'react-redux';
 import * as actions from '../../actions';
 
 import LocationSelector from './components/selector';
-import View from './components/view';
+import Title from './components/title';
+import ViewDetails from './components/view_details';
 
 /** 
  *  Function which when given a parameter term, searches locations so that it's
  *  views may be rendered. Will be called each time the component receives new
  *  props (primarily for asynchronous loading given parameters and new views).
  */
-const loadData = props => {
-    const {term} = props;
-    props.searchLocations(term);
+const loadData = (props) => {
+    props.searchLocations(props.term);
 }
 
 /**
@@ -25,7 +25,7 @@ const loadData = props => {
  *      - rename this from Type to something that makes more sense
  *      - make this container more legible
  */
-class Type extends Component {
+class View extends Component {
     static propTypes = {
         term: PropTypes.string.isRequired,
         searchLocations: PropTypes.func.isRequired,
@@ -51,20 +51,6 @@ class Type extends Component {
         }
     }
 
-    renderTitle() {
-        const {allviews, currentView} = this.props;
-
-        // Display a message if the view is still being loaded in
-        // FUTURE UPDATE: change to animated loading icon
-        if (!currentView) {
-            if (!allviews) {
-                return <h2>Loading...</h2>
-            }
-            return <h2>Loading...</h2>
-        }
-        return <h2>{currentView.name}</h2>
-    }
-
     renderLocationData(location) {
         const {setView} = this.props;
 
@@ -76,22 +62,11 @@ class Type extends Component {
             );
         });
     }
-
-    renderView(view) { 
-        if (!view) {
-            return (
-                <div></div>
-            );
-        }
-        return (
-            <View props={view} />
-        );
-    }
         
     render() {
-        const {allviews, currentView, term} = this.props;
+        const {allviews, currentView} = this.props;
 
-        // Notfy the user that the locations are loading if they aren't ready'
+        // Notfy the user that the locations are loading if they aren't ready
         if (!allviews) {
             return (
                 <h2><i>Oops! Something went wrong.</i></h2>
@@ -100,10 +75,10 @@ class Type extends Component {
 
         return (
             <div className="container viewpage">
-                {this.renderTitle()}
+                <Title cur={currentView} all={allviews} />
                 <hr />
                 <div className="col-md-10" id="left">
-                    {this.renderView(currentView)}
+                    <ViewDetails cur={currentView} />
                 </div>  
                 <div className="col-md-2" id="right">
                     {this.renderLocationData(allviews)}
@@ -122,4 +97,4 @@ const mapStateToProps = (state, ownProps) => {
     };
 };
 
-export default connect(mapStateToProps, actions)(Type);
+export default connect(mapStateToProps, actions)(View);

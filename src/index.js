@@ -5,6 +5,8 @@ import { createStore, applyMiddleware } from 'redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import reduxThunk from 'redux-thunk';
 import reducers from './reducers';
+import {AUTH_USER} from './actions/types';
+import RequireAuth from './core/Auth/require_auth';
 
 // Components to route
 import App from './core';
@@ -15,6 +17,7 @@ import Countries from './routes/countries';
 import Categories from './routes/categories';
 import Country from './routes/country';
 import View from './routes/view';
+import Feature from './routes/feature';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
@@ -30,6 +33,7 @@ ReactDOM.render(
                 <Route name='categories' path='/categories' component={Categories} />
                 <Route name='country' path='/country/:country' component={Country} />
                 <Route name='term' path='/location/:term' component={View} />
+                <Route name='feature' path='/feature' component={RequireAuth(Feature)} />
             </Route>
         </Router>
     </Provider>

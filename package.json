@@ -64,6 +64,7 @@
     "react-scroll": "^1.4.4",
     "react-scrollchor": "^2.2.0",
     "redux": "^3.6.0",
+    "redux-form": "^6.4.1",
     "redux-thunk": "^2.1.0"
   },
   "scripts": {
