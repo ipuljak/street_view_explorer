@@ -9,7 +9,7 @@ class Feature extends Component {
 
     render() {
         return (
-            <div>{this.props.message}</div>
+            <div className="viewpage">{this.props.message}</div>
         );
     }
 }

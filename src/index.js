@@ -11,8 +11,9 @@ import RequireAuth from './core/Auth/require_auth';
 // Components to route
 import App from './core';
 import Home from './routes/home';
-import Signin from './routes/signin';
 import Signup from './routes/signup';
+import Signin from './routes/signin';
+import Signout from './routes/signout';
 import Countries from './routes/countries';
 import Categories from './routes/categories';
 import Country from './routes/country';
@@ -22,6 +23,15 @@ import Feature from './routes/feature';
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
 
+const token = localStorage.getItem('token');
+
+if (token) {
+    // we need to update application state
+    // if we put any action inside this dispatch, it will be sent off to all of our reducers
+    // we are updating our application before it has been rendered
+    store.dispatch({type: AUTH_USER});
+}
+
 ReactDOM.render(
     <Provider store={store}>
         <Router history={browserHistory}>
@@ -29,6 +39,7 @@ ReactDOM.render(
                 <IndexRoute component={Home} />
                 <Route name='login' path='/signin' component={Signin} />
                 <Route name='signup' path='/signup' component={Signup} />
+                <Route name='signout' path='/signout' component={Signout} />
                 <Route name='countries' path='/countries' component={Countries} />
                 <Route name='categories' path='/categories' component={Categories} />
                 <Route name='country' path='/country/:country' component={Country} />

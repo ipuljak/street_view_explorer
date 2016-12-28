@@ -13,7 +13,7 @@ import {
     CURRENT_VIEW
 } from './types';
 
-const API_URL = 'http://138.197.143.248:3001/api';
+const ROOT_URL = 'http://138.197.143.248:3001';
 
 
 /**
@@ -31,7 +31,7 @@ export function signinUser({email, password}) {
     return function(dispatch) {
         // Submit email/password to server
         // have to use a promise because call is asynchronous -> therefore can't just use an if statement right away
-        axios.post(`${API_URL}/auth/signin`, {email, password}) //{email: email, password: password}
+        axios.post(`${ROOT_URL}/auth/signin`, {email, password}) //{email: email, password: password}
             .then(response => {
                 // If request is good...
                 // - Update state to indicate that the user is authenticated
@@ -51,7 +51,7 @@ export function signinUser({email, password}) {
 
 export function signupUser({email, password}) {
     return function(dispatch) {
-        axios.post(`${API_URL}/auth/signup`, {email, password})
+        axios.post(`${ROOT_URL}/auth/signup`, {email, password})
             .then(response => {
                 dispatch({type: AUTH_USER});
                 localStorage.setItem('token', response.data.token);
@@ -76,7 +76,7 @@ export function signoutUser() {
 // redux thunk
 export function fetchMessage() {
     return function(dispatch) {
-        axios.get(`${API_URL}/auth`, {
+        axios.get(`${ROOT_URL}/auth`, {
             headers: {authorization: localStorage.getItem('token')}
         })
             .then(response => {
@@ -91,7 +91,7 @@ export function fetchMessage() {
 
 // the above with redux promise
 export function fetchMessage2() {
-    const request = axios.get(`${API_URL}/auth`, {
+    const request = axios.get(`${ROOT_URL}/auth`, {
         headers: {authorization: localStorage.getItem('token')}
     });
 
@@ -112,7 +112,7 @@ export function fetchMessage2() {
  *  Fetch all the distinct types of locations from the API server.
  */
 export function getDistincts() {
-    const API_CALL = `${API_URL}/street_view/get_distincts`;
+    const API_CALL = `${ROOT_URL}/api/street_view/get_distincts`;
     return function(dispatch) {
         axios.get(API_CALL)
             .then(response => {
@@ -128,7 +128,7 @@ export function getDistincts() {
  *  Given a country, fetch it's information and cities.
  */
 export function setCountry(term) {
-    const API_CALL = `${API_URL}/street_view/get_country_info?country=${term}`;
+    const API_CALL = `${ROOT_URL}/api/street_view/get_country_info?country=${term}`;
     return function(dispatch) {
         axios.get(API_CALL)
             .then(response => {
@@ -144,7 +144,7 @@ export function setCountry(term) {
  *  Return a list of locations given a search term (city, type, etc).
  */
 export function searchLocations(term) {
-    const API_CALL = `${API_URL}/street_view/search_locations?search=${term}`;
+    const API_CALL = `${ROOT_URL}/api/street_view/search_locations?search=${term}`;
     return function(dispatch) {
         axios.get(API_CALL)
             .then(response => {

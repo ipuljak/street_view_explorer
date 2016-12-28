@@ -1,4 +1,5 @@
 import React from 'react';
+import Comment from './comment';
 
 /**
  *  Functional component which gives the user the ability to see and and make
@@ -9,10 +10,14 @@ import React from 'react';
  *          i.e. reply nesting, sorting, etc.
  *      - complete comment functionality
  */
-const Comments = () => {
+const CommentList = (props) => {
     return (
-        <h2>Comments coming in a future update...</h2>
-    );
+        <ul className="list-group">
+            {props.comments.map(item =>
+                <Comment comment={item} />
+            )}
+        </ul>
+    )
 };
 
-export default Comments;
+export default CommentList;

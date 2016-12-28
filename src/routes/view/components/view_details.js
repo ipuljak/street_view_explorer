@@ -1,7 +1,7 @@
 import React from 'react';
 import nl2br from 'react-newline-to-break'; 
 import Street from './street_view_component';
-import Comments from './comments_component';
+import CommentList from './comment_list';
 
 /**
  *  Function which cleans some of the special characters in the HTML, including
@@ -54,7 +54,7 @@ const ViewDetails = (props) => {
                 </p>
             </div>
             <hr />
-            <Comments />
+            <CommentList comments={props.cur.users.comments}/>
             <hr />
         </div>
     );

@@ -1,6 +1,15 @@
 import React, {Component} from 'react';
-import {reduxForm} from 'redux-form';
+import {connect} from 'react-redux';
+import {reduxForm, Field} from 'redux-form';
 import * as actions from '../../actions';
+
+const renderInput = field => 
+    <div>
+        <input {...field.input} type={field.type}/>
+        {field.meta.touched &&
+        field.meta.error &&
+        <span className="error">{field.meta.error}</span>}
+    </div>
 
 class Signin extends Component {
     handleFormSubmit({email, password}) {
@@ -20,19 +29,25 @@ class Signin extends Component {
 
     render() {
         // this comes from this.props
-        const {handleSubmit, fields: {email, password}} = this.props;
+        const {handleSubmit}= this.props;
 
         return (
             <div className="viewpage">
                 <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-                    <fieldset className="form-group">
-                        <label>Email:</label>
-                        <input {...email} className="form-control" />
-                    </fieldset>
-                    <fieldset className="form-group">
-                        <label>Password:</label>
-                        <input {...password} type="password" className="form-control" />
-                    </fieldset>
+                    <div>
+                        <label htmlFor="email">Email</label>
+                        <Field
+                            name="email"
+                            component={renderInput}
+                            type="text" />
+                    </div>
+                    <div>
+                        <label htmlFor="password">Password</label>
+                        <Field
+                            name="password"
+                            component={renderInput}
+                            type="password" />
+                    </div>
                     {this.renderAlert()}
                     <button action="submit" className="btn btn-primary">Sign In</button>
                 </form>
@@ -41,11 +56,14 @@ class Signin extends Component {
     }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
     return {errorMessage: state.auth.error};
 }
 
-export default reduxForm({
-    form: 'signin',
-    fields: ['email', 'password']
-}, mapStateToProps, actions)(Signin); //same as connect (null, mapstatetoprops))
+Signin = reduxForm({
+    form: 'signin'
+})(Signin);
+
+Signin = connect(mapStateToProps, actions)(Signin);
+
+export default Signin;
