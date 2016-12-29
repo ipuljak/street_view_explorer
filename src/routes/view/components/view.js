@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {Component} from 'react';
 import nl2br from 'react-newline-to-break'; 
-import Street from './street_view_component';
-import CommentList from './comment_list';
+import Street from '../street_view/street_view_component';
+import Comments from '../comments';
+import CommentList from '../comments/comment_list';
+
+import View from '../';
 
 /**
  *  Function which cleans some of the special characters in the HTML, including
@@ -25,9 +28,10 @@ const cleanText = (text) => {
  *      - implement a comment system
  *      - implement a like/dislike rating system
  *      - implement a favouriting system
+ * <CommentList comments={props.cur.users.comments}/>
  */
 
-const ViewDetails = (props) => {
+const ViewDisplay = (props) => {
     // Do not load anything in if there are no views
     if (!props.cur) {
         return (
@@ -54,10 +58,11 @@ const ViewDetails = (props) => {
                 </p>
             </div>
             <hr />
-            <CommentList comments={props.cur.users.comments}/>
+            <h3>Comments</h3>
+            <Comments />
             <hr />
         </div>
     );
 }
 
-export default ViewDetails;
+export default ViewDisplay;

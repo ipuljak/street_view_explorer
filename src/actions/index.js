@@ -10,7 +10,8 @@ import {
     FETCH_TYPES,
     VIEWS_BY_TYPE,
     CURRENT_COUNTRY,
-    CURRENT_VIEW
+    CURRENT_VIEW,
+    CURRENT_COMMENTS
 } from './types';
 
 const ROOT_URL = 'http://138.197.143.248:3001';
@@ -39,7 +40,7 @@ export function signinUser({email, password}) {
                 // - Save the JWT token
                 localStorage.setItem('token', response.data.token);
                 // - Redirect to the route '/feature'
-                browserHistory.push('/feature');
+                browserHistory.push('/');
             })
             .catch(() => {
                 // If request is bad...
@@ -150,6 +151,22 @@ export function searchLocations(term) {
             .then(response => {
                 dispatch({
                     type: VIEWS_BY_TYPE,
+                    payload: response.data
+                });
+            });
+    }
+}
+
+/**
+ *  Return a list of comments given a view ID.
+ */
+export function getComments(id) {
+    const API_CALL = `${ROOT_URL}/api/street_view/get_comments?id=${id}`;
+    return function(dispatch) {
+        axios.get(API_CALL)
+            .then(response => {
+                dispatch({
+                    type: CURRENT_COMMENTS,
                     payload: response.data
                 });
             });

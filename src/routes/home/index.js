@@ -28,7 +28,9 @@ import Scrollchor from 'react-scrollchor';
  */
 class Home extends Component {
   componentWillMount() {
-    this.props.getDistincts();
+    if (!this.props.types) {
+        this.props.getDistincts();
+    }
   }
 
   componentDidMount() {

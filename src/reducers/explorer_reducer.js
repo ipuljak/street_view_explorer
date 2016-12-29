@@ -2,7 +2,8 @@ import {
     FETCH_TYPES,
     VIEWS_BY_TYPE,
     CURRENT_COUNTRY,
-    CURRENT_VIEW
+    CURRENT_VIEW,
+    CURRENT_COMMENTS
 } from '../actions/types';
 
 export default function(state = {}, action) {
@@ -15,6 +16,8 @@ export default function(state = {}, action) {
             return {...state, country: action.payload};
         case CURRENT_VIEW:
             return {...state, view: action.payload};
+        case CURRENT_COMMENTS:
+            return {...state, comments: action.payload};
         default:
             return state;
     }

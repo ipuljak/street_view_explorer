@@ -12,7 +12,7 @@ const capitalize = (word) => {
  *  TO DO:
  *      include a note about views that are explorable indoors
  */
-const LocationSelector = (item) => {
+const Locations = (item) => {
     return (
         <div className="list-group-item">
             {item.props.name}
@@ -23,4 +23,4 @@ const LocationSelector = (item) => {
     );
 };
 
-export default LocationSelector;
+export default Locations;

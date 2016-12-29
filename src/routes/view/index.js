@@ -2,9 +2,9 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../actions';
 
-import LocationSelector from './components/selector';
+import Locations from './components/locations';
 import Title from './components/title';
-import ViewDetails from './components/view_details';
+import ViewDisplay from './components/view';
 
 /** 
  *  Function which when given a parameter term, searches locations so that it's
@@ -29,7 +29,8 @@ class View extends Component {
     static propTypes = {
         term: PropTypes.string.isRequired,
         searchLocations: PropTypes.func.isRequired,
-        setView: PropTypes.func.isRequired
+        setView: PropTypes.func.isRequired,
+        getComments: PropTypes.func.isRequired
     }
 
     componentWillMount() {
@@ -45,26 +46,33 @@ class View extends Component {
             loadData(nextProps);
         }
 
-        // Preemptively load in the first view
+        // Preemptively load in the first view and it's comments
         if (nextProps.allviews !== this.props.allviews) {
             this.props.setView(nextProps.allviews[0]);
+            this.props.getComments(nextProps.allviews[0]._id)
         }
     }
 
-    renderLocationData(location) {
+    setNextView(item) {
+        const {setView, getComments} = this.props;
+        setView(item);
+        getComments(item._id);
+    }
+
+    renderLocations(location) {
         const {setView} = this.props;
 
         return location.map((item) => {
             return (
-                <div key={item._id} onClick={() => setView(item)}>
-                    <LocationSelector props={item} />
+                <div key={item._id} onClick={() => this.setNextView(item)}>
+                    <Locations props={item} />
                 </div>
             );
         });
     }
         
     render() {
-        const {allviews, currentView} = this.props;
+        const {allviews, currentView, currentComments} = this.props;
 
         // Notfy the user that the locations are loading if they aren't ready
         if (!allviews) {
@@ -78,12 +86,11 @@ class View extends Component {
                 <Title cur={currentView} all={allviews} />
                 <hr />
                 <div className="col-md-10" id="left">
-                    <ViewDetails cur={currentView} />
+                    <ViewDisplay cur={currentView} />
                 </div>  
                 <div className="col-md-2" id="right">
-                    {this.renderLocationData(allviews)}
+                    {this.renderLocations(allviews)}
                 </div>
-                <hr />     
             </div>
         );
     }
@@ -93,6 +100,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
         allviews: state.explorer.allviews,
         currentView: state.explorer.view,
+        currentComments: state.explorer.currentComments,
         term: ownProps.params.term
     };
 };

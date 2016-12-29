@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactStreetview from '../containers/street_view_container';
+import ReactStreetview from './street_view_container';
 import {apiKEY} from '../../../config.js';
 
 /**
