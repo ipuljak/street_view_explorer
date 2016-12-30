@@ -4,16 +4,12 @@ import {reduxForm, Field} from 'redux-form';
 import {TextField} from 'redux-form-material-ui';
 import * as actions from '../../actions';
 
-const renderInput = field => 
-    <div>
-        <input {...field.input} type={field.type}/>
-        {field.meta.touched &&
-        field.meta.error &&
-        <span className="error">{field.meta.error}</span>}
-    </div>
-
-
 class Signup extends Component {
+    componentWillMount() {
+        // Clear any errors from previous pages
+        this.props.authError(null);
+    }
+    
     componentDidMount() {
         this.refs.username            // the Field
             .getRenderedComponent() // on Field, returns ReduxFormMaterialUITextField
@@ -21,11 +17,9 @@ class Signup extends Component {
             .focus()                // on TextField
     }
 
-
     handleFormSubmit(formProps) {
         // Call action creator to sign up the user
         // formProps are valid
-
         this.props.signupUser(formProps);
     }
 
@@ -42,7 +36,7 @@ class Signup extends Component {
     render() {
         const {handleSubmit} = this.props;
         return (
-            <div className="viewpage">
+            <div className="viewpage container">
                 <h1>Sign Up</h1>
                 <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
                     <div>

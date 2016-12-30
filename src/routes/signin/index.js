@@ -4,15 +4,12 @@ import {reduxForm, Field} from 'redux-form';
 import {TextField} from 'redux-form-material-ui';
 import * as actions from '../../actions';
 
-const renderInput = field => 
-    <div>
-        <input {...field.input} type={field.type}/>
-        {field.meta.touched &&
-        field.meta.error &&
-        <span className="error">{field.meta.error}</span>}
-    </div>
-
 class Signin extends Component {
+    componentWillMount() {
+        // Clear any errors from previous pages
+        this.props.authError(null);
+    }
+
     componentDidMount() {
         this.refs.username            // the Field
             .getRenderedComponent() // on Field, returns ReduxFormMaterialUITextField

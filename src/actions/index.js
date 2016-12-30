@@ -45,7 +45,7 @@ export function signinUser({username, password}) {
             .catch(() => {
                 // If request is bad...
                 // - Show an error to the user
-                dispatch(authError('Bad Login Info'));
+                dispatch(authError('Username or password is incorrect.'));
             });
     }
 }
