@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {reduxForm, Field} from 'redux-form';
+import {TextField} from 'redux-form-material-ui';
 import * as actions from '../../actions';
 
 const renderInput = field => 
@@ -12,9 +13,15 @@ const renderInput = field =>
     </div>
 
 class Signin extends Component {
-    handleFormSubmit({email, password}) {
-        console.log(email, password);
-        this.props.signinUser({email, password});
+    componentDidMount() {
+        this.refs.username            // the Field
+            .getRenderedComponent() // on Field, returns ReduxFormMaterialUITextField
+            .getRenderedComponent() // on ReduxFormMaterialUITextField, returns TextField
+            .focus()                // on TextField
+    }
+
+    handleFormSubmit({username, password}) {
+        this.props.signinUser({username, password});
     }
 
     renderAlert() {
@@ -32,22 +39,26 @@ class Signin extends Component {
         const {handleSubmit}= this.props;
 
         return (
-            <div className="viewpage">
+            <div className="viewpage container">
+                <h1>Sign In</h1>
                 <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
                     <div>
-                        <label htmlFor="email">Email</label>
                         <Field
-                            name="email"
-                            component={renderInput}
-                            type="text" />
+                            name="username"
+                            component={TextField}
+                            hintText="Enter your username"
+                            floatingLabelText="Username"
+                            ref="username" withRef />
                     </div>
                     <div>
-                        <label htmlFor="password">Password</label>
                         <Field
                             name="password"
-                            component={renderInput}
-                            type="password" />
+                            component={TextField}
+                            type="password"
+                            hintText="Enter your password"
+                            floatingLabelText="Password" />
                     </div>
+                    <br/>
                     {this.renderAlert()}
                     <button action="submit" className="btn btn-primary">Sign In</button>
                 </form>

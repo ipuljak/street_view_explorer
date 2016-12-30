@@ -30,6 +30,10 @@ class Country extends Component {
         loadData(this.props);
     }
 
+    componentWillUpdate() {
+        window.scrollTo(0,0);
+    }
+
     componentWillReceiveProps(nextProps) {
         if (nextProps.term !== this.props.term) {
             loadData(nextProps);

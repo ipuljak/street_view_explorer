@@ -11,7 +11,7 @@ const Comment = (props) => {
                 <span className="text-muted"> commented on {props.comment.date}</span>
             </div>
             <div className="panel-body">
-                <p>{props.comment.text}</p>
+                <p>{props.comment.comment}</p>
             </div>
         </div>
     );

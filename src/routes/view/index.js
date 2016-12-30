@@ -66,8 +66,6 @@ class View extends Component {
     }
 
     renderLocations(location) {
-        const {setView} = this.props;
-
         return location.map((item) => {
             return (
                 <div key={item._id} onClick={() => this.setNextView(item)}>
@@ -76,34 +74,9 @@ class View extends Component {
             );
         });
     }
-
-    renderCommentBox() {
-        const {authenticated} = this.props;
-
-        if (authenticated) {
-            return (
-                <div className="form-group">
-                    <textarea className="form-control" rows="5" id="comment" placeholder="Write a comment.." />
-                    <button onClick={() => this.submitComment()} className="btn btn-primary">Send</button>
-                </div>
-            );
-        } else {
-            return <p>Sign in to post a comment!</p>
-        }
-    }
-
-    renderComments() {
-        const {currentComments} = this.props;
-
-        if (!currentComments || currentComments.length === 0) {
-            return <div>No comments to display!</div>
-        }
-
-        return <CommentList comments={currentComments} />
-    }
         
     render() {
-        const {allviews, currentView, currentComments} = this.props;
+        const {allviews, currentView} = this.props;
 
         // Notfy the user that the locations are loading if they aren't ready
         if (!allviews || !currentView) {

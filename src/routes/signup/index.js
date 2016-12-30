@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {reduxForm, Field} from 'redux-form';
+import {TextField} from 'redux-form-material-ui';
 import * as actions from '../../actions';
 
 const renderInput = field => 
@@ -13,6 +14,14 @@ const renderInput = field =>
 
 
 class Signup extends Component {
+    componentDidMount() {
+        this.refs.username            // the Field
+            .getRenderedComponent() // on Field, returns ReduxFormMaterialUITextField
+            .getRenderedComponent() // on ReduxFormMaterialUITextField, returns TextField
+            .focus()                // on TextField
+    }
+
+
     handleFormSubmit(formProps) {
         // Call action creator to sign up the user
         // formProps are valid
@@ -30,36 +39,40 @@ class Signup extends Component {
         }
     }
 
-    //fields: {email, password, passwordConfirm}
-
     render() {
         const {handleSubmit} = this.props;
         return (
             <div className="viewpage">
+                <h1>Sign Up</h1>
                 <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
                     <div>
-                        <label htmlFor="email">Email</label>
                         <Field
-                            name="email"
-                            component={renderInput}
-                            type="text" />
+                            name="username"
+                            component={TextField}
+                            hintText="Enter your desired username"
+                            floatingLabelText="Username"
+                            ref="username" withRef />
                     </div>
                     <div>
-                        <label htmlFor="password">Password</label>
                         <Field
                             name="password"
-                            component={renderInput}
-                            type="password" />
+                            component={TextField}
+                            type="password"
+                            hintText="Enter a password"
+                            floatingLabelText="Password" />
                     </div>
                     <div>
-                        <label htmlFor="passwordConfirm">Confirm Passord</label>
                         <Field
                             name="passwordConfirm"
-                            component={renderInput}
-                            type="password" />
+                            component={TextField}
+                            type="password"
+                            hintText="Confirm your password"
+                            floatingLabelText="Password Confirm" />
                     </div>
+                    <br/>
                     {this.renderAlert()}
-                    <button type="submit">Submit</button>
+                    <button className="btn btn-primary" type="submit">Submit</button>
+                    <br/>
                 </form>
             </div>
         );
@@ -71,8 +84,8 @@ function validate(formProps) {
 
     // todo : use foreach to validate
 
-    if (!formProps.email) {
-        errors.email = "Please enter an email.";
+    if (!formProps.username) {
+        errors.username = "Please enter an username.";
     }
 
     if (!formProps.password) {

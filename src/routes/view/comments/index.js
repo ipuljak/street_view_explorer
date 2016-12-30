@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
+import axios from 'axios';
 import * as actions from '../../../actions';
 
 import CommentList from './comment_list';
@@ -11,8 +12,22 @@ class Comments extends Component {
     }
 
     submitComment() {
-        console.log("run?");
-        console.log(document.getElementById("comment").value);
+        const {currentView, getComments} = this.props;
+
+        const data = {
+            comment: document.getElementById("comment").value
+        };
+
+        const VIEW_ID = currentView._id;
+        const API_URL = `http://138.197.143.248:3001/api/street_view/post_comment?id=${VIEW_ID}`; 
+
+        axios.post(API_URL, data, {
+            headers: {authorization: localStorage.getItem('token')} 
+        })
+            .then(response => {
+                document.getElementById("comment").value = '';
+                getComments(VIEW_ID);
+            });
     }
 
     renderCommentBox() {
@@ -54,6 +69,7 @@ class Comments extends Component {
 const mapStateToProps = (state) => {
     return {
         currentComments: state.explorer.comments,
+        currentView: state.explorer.view,
         authenticated: state.auth.authenticated
     };
 };

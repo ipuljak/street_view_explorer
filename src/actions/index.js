@@ -23,16 +23,16 @@ const ROOT_URL = 'http://138.197.143.248:3001';
  * ========================================================
  */
 
-export function signinUser({email, password}) {
+export function signinUser({username, password}) {
     // gonna return a function instead of an object for an action creator
     // this function is how we get direct access to dispatch function
     // this is what redux thunk does. we do this so we get asynchronous abilities
     // it doesn't have to run immediately
 
     return function(dispatch) {
-        // Submit email/password to server
+        // Submit username/password to server
         // have to use a promise because call is asynchronous -> therefore can't just use an if statement right away
-        axios.post(`${ROOT_URL}/auth/signin`, {email, password}) //{email: email, password: password}
+        axios.post(`${ROOT_URL}/auth/signin`, {username, password}) //{username: username, password: password}
             .then(response => {
                 // If request is good...
                 // - Update state to indicate that the user is authenticated
@@ -50,13 +50,13 @@ export function signinUser({email, password}) {
     }
 }
 
-export function signupUser({email, password}) {
+export function signupUser({username, password}) {
     return function(dispatch) {
-        axios.post(`${ROOT_URL}/auth/signup`, {email, password})
+        axios.post(`${ROOT_URL}/auth/signup`, {username, password})
             .then(response => {
                 dispatch({type: AUTH_USER});
                 localStorage.setItem('token', response.data.token);
-                browserHistory.push('/feature');
+                browserHistory.push('/');
             })
             .catch(error => dispatch(authError(error.response.data.error)));
     }
