@@ -8,6 +8,8 @@ import Street from './street_view/street_view_component';
 import Comments from './comments/';
 import Locations from './components/locations';
 
+import './sidebar.css';
+
 /** 
  *  Function which when given a parameter term, searches locations so that it's
  *  views may be rendered. Will be called each time the component receives new
@@ -74,6 +76,10 @@ class View extends Component {
             );
         });
     }
+
+    toggleSidebar() {
+        document.getElementById("wrapper").classList.toggle("toggled");
+    }
         
     render() {
         const {allviews, currentView} = this.props;
@@ -86,33 +92,43 @@ class View extends Component {
         }
 
         return (
-            <div className="container viewpage">
-                <Title cur={currentView} all={allviews} />
-                <hr />
-                <div className="col-md-10" id="left">
-                    <div className="view">
-                        <Street view={currentView.view} />
-                        <hr />
-                        <div className="about">
-                            <img 
-                                className="aboutPic" 
-                                src={currentView.data.image} 
-                                role="presentation" />
-                            <p> 
-                                {nl2br(cleanText(currentView.data.info))} 
-                                <span>
-                                    Read more <a target="_blank" href={currentView.data.link}>here</a>.
-                                </span>
-                            </p>
+            <div className="viewpage" id="wrapper">
+                <div id="sidebar-wrapper">
+                    <ul className="sidebar-nav">
+                        {this.renderLocations(allviews)}                        
+                    </ul>
+                </div>
+                <div id="page-content-wrapper">
+                    <div className="container-fluid">
+                        <div className="row">
+                        <div className="col-md-12">
+                            <button onClick={() => {this.toggleSidebar()}} className="btn btn-primary pull-left" id="menu-toggle">Toggle Views</button>
+                            <br/>
+                            <Title cur={currentView} all={allviews} />
+                            <hr />
+                            <div className="view">
+                                <Street view={currentView.view} />
+                                <hr />
+                                <div className="about">
+                                    <img 
+                                        className="aboutPic" 
+                                        src={currentView.data.image} 
+                                        role="presentation" />
+                                    <p> 
+                                        {nl2br(cleanText(currentView.data.info))} 
+                                        <span>
+                                            Read more <a target="_blank" href={currentView.data.link}>here</a>.
+                                        </span>
+                                    </p>
+                                </div>
+                                <hr />
+                                <h3>Comments</h3>
+                                <Comments />
+                                <hr />
+                            </div>
                         </div>
-                        <hr />
-                        <h3>Comments</h3>
-                        <Comments />
-                        <hr />
                     </div>
-                </div>  
-                <div className="col-md-2" id="right">
-                    {this.renderLocations(allviews)}
+                    </div>
                 </div>
             </div>
         );

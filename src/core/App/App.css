@@ -276,6 +276,14 @@ fieldset[disabled] .btn-primary.active {
   text-transform: uppercase;
 }
 
+.btn:focus {
+  outline-style: none;
+}
+
+.btn:active {
+  outline-style: none;
+}
+
 .btn-xl {
   padding: 15px 30px;
 }
@@ -294,8 +302,7 @@ fieldset[disabled] .btn-primary.active {
 }
 
 .viewpage {
-  background: white;
-  padding-top: 75px;
+  padding-top: 50px;
 }
 
 .selectable p {

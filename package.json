@@ -64,6 +64,7 @@
     "react-router-redux": "^4.0.7",
     "react-scroll": "^1.4.4",
     "react-scrollchor": "^2.2.0",
+    "react-sidebar": "^2.2.1",
     "react-tap-event-plugin": "^2.0.1",
     "redux": "^3.6.0",
     "redux-form": "^6.4.1",

@@ -24,7 +24,8 @@ const Street = (item) => {
         },
         zoom: view.zoom,
         showRoadLabels: false,
-        addressControl: false
+        addressControl: false,
+        motionTracking: false
     };
 
     return (
