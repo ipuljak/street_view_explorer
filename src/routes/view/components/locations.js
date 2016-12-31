@@ -1,10 +1,5 @@
 import React from 'react';
 
-// Capitalize a given word.
-const capitalize = (word) => {
-    return word.charAt(0).toUpperCase() + word.slice(1);
-}
-
 /**
  *  Functional component which displays a list of views on a location page 
  *  that the user can then click to load in the selected view. 
@@ -16,8 +11,8 @@ const Locations = (item) => {
     return (
         <div className="list-group-item">
             {item.props.name}
-            <div className="cityCountry">
-                {capitalize(item.props.location.city)}, {item.props.location.country}
+            <div className="cityCountry capitalize">
+                {item.props.location.city}, {item.props.location.country}
             </div>
         </div>
     );

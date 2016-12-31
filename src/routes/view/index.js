@@ -65,6 +65,10 @@ class View extends Component {
 
         setView(item);
         getComments(item._id);
+
+        if (window.screen.width < 768) {
+            this.toggleSidebar();
+        }
     }
 
     renderLocations(location) {
@@ -101,8 +105,8 @@ class View extends Component {
                 <div id="page-content-wrapper">
                     <div className="container-fluid">
                         <div className="row">
-                        <div className="col-md-12">
-                            <button onClick={() => {this.toggleSidebar()}} className="btn btn-primary pull-left" id="menu-toggle">Toggle Views</button>
+                        <div className="col-lg-12">
+                            <button onClick={() => {this.toggleSidebar()}} className="btn btn-primary pull-left viewBtn" id="menu-toggle">Views</button>
                             <br/>
                             <Title cur={currentView} all={allviews} />
                             <hr />
