@@ -2,12 +2,12 @@
   -webkit-transition: all 0.35s;
   -moz-transition: all 0.35s;
   transition: all 0.35s;
-  color: #F05F40;
+  color: #6899c1;
 }
 
 .navbar-settings a:hover,
 .navbar-settings a:focus {
-  color: #eb3812;
+  color: #518cba;
   text-decoration: none;
 }
 
@@ -22,7 +22,7 @@
 }
 
 .navbar-default .navbar-header .navbar-brand {
-  color: #F05F40;
+  color: #6899c1;
   font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
   font-weight: 700;
   text-transform: uppercase;
@@ -31,13 +31,13 @@
 
 .navbar-default .navbar-header .navbar-brand:hover,
 .navbar-default .navbar-header .navbar-brand:focus {
-  color: #eb3812;
+  color: #518cba;
 }
 
 .navbar-default .navbar-header .navbar-toggle {
   font-weight: 700;
   font-size: 12px;
-  color: #222222;
+  color: #518cba;
   text-transform: uppercase;
 }
 
@@ -46,17 +46,17 @@
   text-transform: uppercase;
   font-weight: 700;
   font-size: 13px;
-  color: #222222;
+  color: #518cba;
 }
 
 .navbar-default .nav > li > a:hover,
 .navbar-default .nav > li > a:focus:hover {
-  color: #F05F40;
+  color: #6899c1;
 }
 
 .navbar-default .nav > li.active > a,
 .navbar-default .nav > li.active > a:focus {
-  color: #F05F40 !important;
+  color: #6899c1;
   background-color: transparent;
 }
 
@@ -68,41 +68,41 @@
 @media (min-width: 768px) {
   .navbar-default {
     background-color: white;
-    color: #F05F40;
+    color: #6899c1;
   }
   .navbar-default .navbar-header .navbar-brand {
-    color: #F05F40;
+    color: #6899c1;
   }
   .navbar-default .navbar-header .navbar-brand:hover,
   .navbar-default .navbar-header .navbar-brand:focus {
-    color: #eb3812;
+    color: #518cba;
   }
   .navbar-default .nav > li > a,
   .navbar-default .nav > li > a:focus {
-    color: #F05F40;
+    color: #6899c1;
   }
   .navbar-default .nav > li > a:hover,
   .navbar-default .nav > li > a:focus:hover {
-    color: #eb3812;
+    color: #518cba;
   }
   .navbar-default.affix {
     background-color: white;
     border-color: rgba(34, 34, 34, 0.05);
   }
   .navbar-default.affix .navbar-header .navbar-brand {
-    color: #F05F40;
+    color: #6899c1;
     font-size: 12px;
   }
   .navbar-default.affix .navbar-header .navbar-brand:hover,
   .navbar-default.affix .navbar-header .navbar-brand:focus {
-    color: #eb3812;
+    color: #518cba;
   }
   .navbar-default.affix .nav > li > a,
   .navbar-default.affix .nav > li > a:focus {
-    color: #222222;
+    color: #518cba;
   }
   .navbar-default.affix .nav > li > a:hover,
   .navbar-default.affix .nav > li > a:focus:hover {
-    color: #F05F40;
+    color: #6899c1;
   }
 }

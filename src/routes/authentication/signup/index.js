@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {reduxForm, Field} from 'redux-form';
 import {TextField} from 'redux-form-material-ui';
-import * as actions from '../../actions';
+import * as actions from '../../../actions';
 
 class Signup extends Component {
     componentWillMount() {
@@ -36,7 +36,7 @@ class Signup extends Component {
     render() {
         const {handleSubmit} = this.props;
         return (
-            <div className="viewpage container">
+            <div className="padded-top container">
                 <h1>Sign Up</h1>
                 <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
                     <div>

@@ -4,6 +4,7 @@ import {Link} from 'react-router';
 import * as actions from '../../actions';
 import Scrollchor from 'react-scrollchor';
 
+import Footer from '../../core/Footer';
 
 /**
  *  className component Welcome which serves as the homepage for the website. 
@@ -112,29 +113,7 @@ class Home extends Component {
                     </div>
                 </div>
             </section>
-
-            <section className="bg-primary" id="contact">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-8 col-lg-offset-2 text-center">
-                            <h2 className="section-heading">Contact</h2>
-                            <hr className="light" />
-                            <p>Questions? Concerns? Suggestions? We'll take anything you've got. Feel free to email me below. 
-                            Curious on how this website was created? Want to make an improvement or change? See some of my 
-                            other work? Visit my GitHub page!</p>
-                        </div>
-                        <div className="col-lg-4 col-lg-offset-2 text-center">
-                            <i className="fa fa-envelope-o fa-3x sr-contact"></i>
-                            <p><a href="mailto:ivanpulj@gmail.com">ivanpulj@gmail.com</a></p>
-                        </div>
-                        <div className="col-lg-4 text-center">
-                            <i className="fa fa-github fa-3x sr-contact"></i>
-                            <p><a target="_blank" href="https://github.com/ipuljak">ipuljak</a></p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
+            <Footer />
         </div>
     );
   }

@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import * as actions from '../../actions';
 
+import Footer from '../../core/Footer';
+
 class Countries extends Component {
   componentWillMount() {
     if (!this.props.types) {
@@ -36,7 +38,7 @@ class Countries extends Component {
 
   render() {
     return (
-      <div className="viewpage">
+      <div className="padded-top">
         <div className="container-fluid">
             <div className="col-lg-12 text-center">
                 <h2 className="section-heading">Countries of the World</h2>
@@ -46,6 +48,7 @@ class Countries extends Component {
                 {this.renderCountries()}
             </div>
         </div>
+        <Footer />
       </div>
     );
   }

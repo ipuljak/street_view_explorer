@@ -11,14 +11,13 @@ import RequireAuth from './core/Auth/require_auth';
 // Components to route
 import App from './core';
 import Home from './routes/home';
-import Signup from './routes/signup';
-import Signin from './routes/signin';
-import Signout from './routes/signout';
+import Signup from './routes/authentication/signup';
+import Signin from './routes/authentication/signin';
+import Signout from './routes/authentication/signout';
 import Countries from './routes/countries';
 import Categories from './routes/categories';
 import Country from './routes/country';
 import View from './routes/view';
-import Feature from './routes/feature';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
@@ -44,7 +43,6 @@ ReactDOM.render(
                 <Route name='categories' path='/categories' component={Categories} />
                 <Route name='country' path='/country/:country' component={Country} />
                 <Route name='term' path='/location/:term' component={View} />
-                <Route name='feature' path='/feature' component={RequireAuth(Feature)} />
             </Route>
         </Router>
     </Provider>

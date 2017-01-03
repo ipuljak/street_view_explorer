@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import * as actions from '../../actions';
 
 import CountryView from './components/country_view_component';
+import Footer from '../../core/Footer';
 
 /** 
  *  Function which when given a parameter term, sets the country so that it's
@@ -46,13 +47,17 @@ class Country extends Component {
         if (!country) {
             // FUTURE UPDATE: render an animated loading icon instead
             return (
-                <h2>Loading...</h2>
+                <div className="padded-top">
+                    <h2>Loading...</h2>
+                    <Footer />
+                </div>
             );
         }
         else {
             return (
-                <div className="container viewpage">
+                <div className="container padded-top">
                     <CountryView props={country} />
+                    <Footer />
                 </div>
             );
         }

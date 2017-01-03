@@ -1,15 +1,8 @@
-/**
- *  TO DO:
- *      - add authentication
- *      - styling issues
- *      - code clean-up
- */
-
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import {Navbar, Nav, NavItem} from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
+import { LinkContainer, IndexLinkContainer } from 'react-router-bootstrap';
 
 import './header.css';
 
@@ -42,7 +35,7 @@ class Header extends Component {
                 </Navbar.Header>
                 <Navbar.Collapse>
                 <Nav pullRight>
-                    <LinkContainer to="/"><NavItem>Home</NavItem></LinkContainer>
+                    <IndexLinkContainer to="/"><NavItem>Home</NavItem></IndexLinkContainer>
                     <LinkContainer to="/countries"><NavItem>Countries</NavItem></LinkContainer>
                     <LinkContainer to="/categories"><NavItem>Categories</NavItem></LinkContainer>
                     {this.renderLinks()}

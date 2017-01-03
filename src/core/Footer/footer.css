@@ -1,0 +1,93 @@
+.footer{
+	background-color: #6899c1;
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+	box-sizing: border-box;
+	text-align: center;
+	font: bold 16px;
+	padding: 50px 50px;
+}
+
+.footer h2{
+	color:  white;
+	font: normal 36px;
+	margin: 0;
+	margin-bottom: 20px;
+}
+
+.footer h2 span{
+	color:  #5383d3;
+}
+
+.footer .footer-links {
+	list-style: none;
+}
+
+.footer .footer-links a {
+	color:  #33383b;
+	line-height: 2.4;
+	font-size: 16px;
+}
+
+.footer .footer-links a:hover {
+	color:  white;
+}
+
+.footer .footer-company-name{
+	color:  white;
+	font-size: 14px;
+	font-weight: normal;
+	margin: 0;
+}
+
+.footer i.fa-envelope{
+	background-color:  #33383b;
+	color: white;
+	font-size: 25px;
+	width: 38px;
+	height: 38px;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 42px;
+	margin: 10px 15px;
+	vertical-align: middle;
+	font-size: 17px;
+	line-height: 38px;
+}
+
+.footer .footer-icons{
+	margin: 25px auto;
+}
+
+.footer .footer-icons a{
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	cursor: pointer;
+	background-color:  #33383b;
+	border-radius: 2px;
+
+	font-size: 20px;
+	color: white;
+	text-align: center;
+	line-height: 35px;
+
+	margin-right: 3px;
+	margin-bottom: 5px;
+}
+
+.footer .footer-icons a:hover {
+	color: #6899c1;
+}
+
+.footer-blurb {
+	margin: 0 auto;
+	width: 60%;
+}
+
+.copyright {
+	color: white;
+}
+
+.email a {
+	color: white;
+}

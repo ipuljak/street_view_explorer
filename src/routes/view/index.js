@@ -26,6 +26,14 @@ const cleanText = (text) => {
     return text.replace(/\\n/g, '\n').replace(/\n\n/g, '\n').replace(/\\"/g, '"');
 }
 
+const fieldSorter = (fields) => {
+    return (a, b) => fields.map(o => {
+        let dir = 1;
+        if (o[0] === '-') { dir = -1; o=o.substring(1); }
+        return a[o] > b[o] ? dir : a[o] < b[o] ? -(dir) : 0;
+    }).reduce((p,n) => p ? p : n, 0);
+}
+
 /**
  *  Class component Type which acts as a container listening for changes in:
  *      - allviews (the list of views that should be rendered on the page)
@@ -72,10 +80,27 @@ class View extends Component {
     }
 
     renderLocations(location) {
-        return location.map((item) => {
+
+        // Sort the locations first by type and then name
+        const sortedLocations = location.sort(fieldSorter(['type', 'name']));
+        let currentType = '';
+        let currentTypeHTML = '';
+
+        return sortedLocations.map((item) => {
+            currentTypeHTML = '';
+            if (currentType !== item.type) {
+                currentType = item.type;
+                if (item.type !== "_city") {
+                    currentTypeHTML = <p className="type-header capitalize">{item.type}</p>;
+                }
+            }
+
             return (
-                <div key={item._id} onClick={() => this.setNextView(item)}>
-                    <Locations props={item} />
+                <div>
+                    {currentTypeHTML}
+                    <div key={item._id} onClick={() => this.setNextView(item)}>
+                        <Locations props={item} />
+                    </div>
                 </div>
             );
         });
@@ -91,12 +116,14 @@ class View extends Component {
         // Notfy the user that the locations are loading if they aren't ready
         if (!allviews || !currentView) {
             return (
-                <h2><i>Oops! Something went wrong.</i></h2>
+                <div className="padded-top">
+                    <h2><i>Oops! Something went wrong.</i></h2>
+                </div>
             );
         }
 
         return (
-            <div className="viewpage" id="wrapper">
+            <div className="padded-top" id="wrapper">
                 <div id="sidebar-wrapper">
                     <ul className="sidebar-nav">
                         {this.renderLocations(allviews)}                        
@@ -106,7 +133,9 @@ class View extends Component {
                     <div className="container-fluid">
                         <div className="row">
                         <div className="col-lg-12">
-                            <button onClick={() => {this.toggleSidebar()}} className="btn btn-primary pull-left viewBtn" id="menu-toggle">Views</button>
+                            <div className="view-menu">
+                                <button onClick={() => {this.toggleSidebar()}} className="btn btn-primary pull-left viewBtn" id="menu-toggle">Views</button>
+                            </div>
                             <br/>
                             <Title cur={currentView} all={allviews} />
                             <hr />
