@@ -32,7 +32,7 @@ const Street = (item) => {
         <div style={{
             margin: '0 auto',
             width: '100%',
-            height: '60vh',
+            height: '50vh',
             backgroundColor: '#EEEEEE'
         }}>
             <ReactStreetview

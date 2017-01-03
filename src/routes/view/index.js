@@ -63,8 +63,10 @@ class View extends Component {
 
         // Preemptively load in the first view and it's comments
         if (nextProps.allviews !== allviews) {
-            setView(nextProps.allviews[0]);
-            getComments(nextProps.allviews[0]._id)
+            // Sort the locations first by type and then name
+            const sortedLocations = nextProps.allviews.sort(fieldSorter(['type', 'name']));
+            setView(sortedLocations[0]);
+            getComments(sortedLocations[0]._id)
         }
     }
 
@@ -81,12 +83,10 @@ class View extends Component {
 
     renderLocations(location) {
 
-        // Sort the locations first by type and then name
-        const sortedLocations = location.sort(fieldSorter(['type', 'name']));
         let currentType = '';
         let currentTypeHTML = '';
 
-        return sortedLocations.map((item) => {
+        return location.map((item) => {
             currentTypeHTML = '';
             if (currentType !== item.type) {
                 currentType = item.type;
@@ -96,9 +96,9 @@ class View extends Component {
             }
 
             return (
-                <div>
+                <div key={item._id}>
                     {currentTypeHTML}
-                    <div key={item._id} onClick={() => this.setNextView(item)}>
+                    <div onClick={() => this.setNextView(item)}>
                         <Locations props={item} />
                     </div>
                 </div>
@@ -123,20 +123,20 @@ class View extends Component {
         }
 
         return (
-            <div className="padded-top" id="wrapper">
+            <div className="padded-top container" id="wrapper">
                 <div id="sidebar-wrapper">
                     <ul className="sidebar-nav">
                         {this.renderLocations(allviews)}                        
                     </ul>
                 </div>
                 <div id="page-content-wrapper">
-                    <div className="container-fluid">
+                    <div className="">
                         <div className="row">
                         <div className="col-lg-12">
-                            <div className="view-menu">
-                                <button onClick={() => {this.toggleSidebar()}} className="btn btn-primary pull-left viewBtn" id="menu-toggle">Views</button>
-                            </div>
-                            <br/>
+                                <div className="view-menu visible-xs">
+                                    <button onClick={() => {this.toggleSidebar()}} className="btn btn-primary pull-left viewBtn" id="menu-toggle">Views</button>
+                                    <br/>
+                                 </div>
                             <Title cur={currentView} all={allviews} />
                             <hr />
                             <div className="view">

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Link} from 'react-router';
 
 import './footer.css';
@@ -14,7 +14,7 @@ const Footer = () => {
 							<hr className="light" />
 							<li><Link to="/">Home</Link></li>
 							<li><Link to="/">About</Link></li>
-							<li><Link to="/">Privacy Policy</Link></li>
+							<li><Link to="/privacy_policy">Privacy Policy</Link></li>
 							<li><Link to="/">Contact</Link></li>
 						</div>
 						<div>

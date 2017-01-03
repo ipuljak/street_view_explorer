@@ -289,9 +289,3 @@ aside {
   color: white;
   margin: 0 auto;
 }
-
-.view-menu {
-  background: blue;
-  width: 100%;
-  position: fixed;
-}
