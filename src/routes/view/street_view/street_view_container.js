@@ -33,46 +33,46 @@ class ReactStreetview extends React.Component {
 		super();
 		this.state = {
 			streetView: null,
-			domElementId: 'street-view-' + Math.floor(Math.random() * 1000000) 
+			domElementId: 'street-view-' + Math.floor(Math.random() * 1000000)
 		};
 	}
 
-    update(canvas, mapProps) {
-        const googleMaps = mapProps.googleMaps;
+	update(canvas, mapProps) {
+		const googleMaps = mapProps.googleMaps;
 
-        const sv = new googleMaps.StreetViewPanorama(
-            canvas,
-            mapProps.streetViewPanoramaOptions
-        );
+		const sv = new googleMaps.StreetViewPanorama(
+			canvas,
+			mapProps.streetViewPanoramaOptions
+		);
 
-        this.setState({streetView: sv});
-    }
+		this.setState({ streetView: sv });
+	}
 
-	initialize (canvas) {
+	initialize(canvas) {
 		if (this.props.googleMaps && this.state.streetView == null) {
 			this.update(canvas, this.props);
 		}
 	}
 
-	componentDidMount () {
+	componentDidMount() {
 		this.initialize(ReactDOM.findDOMNode(this));
 	}
 
-	componentDidUpdate () {
+	componentDidUpdate() {
 		this.initialize(ReactDOM.findDOMNode(this));
 	}
 
-    componentWillReceiveProps(nextProps) {
-        this.update(ReactDOM.findDOMNode(this), nextProps);
-    }
-		
+	componentWillReceiveProps(nextProps) {
+		this.update(ReactDOM.findDOMNode(this), nextProps);
+	}
+
 	render() {
 		return <div
 			style={{
 				height: '100%'
 			}}
 			id={this.state.domElementId}
-		></div>;
+			></div>;
 	}
 }
 
@@ -82,14 +82,14 @@ ReactStreetview.propTypes = {
 };
 
 ReactStreetview.defaultProps = {
-	streetViewPanoramaOptions : {
-		position: {lat: 46.9171876, lng: 17.8951832},
-		pov: {heading: 0, pitch: 0},
+	streetViewPanoramaOptions: {
+		position: { lat: 46.9171876, lng: 17.8951832 },
+		pov: { heading: 0, pitch: 0 },
 		zoom: 1
 	}
 };
 
-function mapScriptsToProps (props) {
+function mapScriptsToProps(props) {
 	const googleMapsApiKey = props.apiKey;
 	return {
 		googleMaps: {

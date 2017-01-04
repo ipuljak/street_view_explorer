@@ -1,5 +1,6 @@
-import React, {Component, PropTypes} from 'react';
-import {connect} from 'react-redux';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+
 import * as actions from '../../actions';
 
 import CountryView from './components/country_view_component';
@@ -11,8 +12,8 @@ import Footer from '../../core/Footer';
  *  props (primarily for asynchronous loading given parameters).
  */
 const loadData = props => {
-    const {term} = props;
-    props.setCountry(term);
+  const {term} = props;
+  props.setCountry(term);
 }
 
 /**
@@ -22,53 +23,60 @@ const loadData = props => {
  *      i.e. /country/:term
  */
 class Country extends Component {
-    static propTypes = {
-        term: PropTypes.string.isRequired,
-        setCountry: PropTypes.func.isRequired
+  static propTypes = {
+    term: PropTypes.string.isRequired,
+    setCountry: PropTypes.func.isRequired
+  }
+
+  // Load the data in immediately
+  componentWillMount() {
+    loadData(this.props);
+  }
+
+  // Scroll the page to the top once mounted
+  componentWillUpdate() {
+    window.scrollTo(0, 0);
+  }
+
+  // Reload the data if any the props have changed
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.term !== this.props.term) {
+      loadData(nextProps);
+    }
+  }
+
+  render() {
+    const {country} = this.props;
+
+    // If the country has not been loaded in yet, let the user know it's loading'
+    if (!country) {
+      // FUTURE UPDATE: render an animated loading icon instead
+      return (
+        <div className="padded-top">
+          <h2>Loading...</h2>
+          <Footer />
+        </div>
+      );
     }
 
-    componentWillMount() {
-        loadData(this.props);
+    else {
+      return (
+        <div>
+          <div className="container padded-top">
+            <CountryView props={country} />
+          </div>
+          <Footer />
+        </div>
+      );
     }
-
-    componentWillUpdate() {
-        window.scrollTo(0,0);
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.term !== this.props.term) {
-            loadData(nextProps);
-        }
-    }
-
-    render() {
-        const {country} = this.props;
-
-        if (!country) {
-            // FUTURE UPDATE: render an animated loading icon instead
-            return (
-                <div className="padded-top">
-                    <h2>Loading...</h2>
-                    <Footer />
-                </div>
-            );
-        }
-        else {
-            return (
-                <div className="container padded-top">
-                    <CountryView props={country} />
-                    <Footer />
-                </div>
-            );
-        }
-    }
+  }
 }
 
 const mapStateToProps = (state, ownProps) => {
-    return {
-        country: state.explorer.country,
-        term: ownProps.params.country
-    };
+  return {
+    country: state.explorer.country,
+    term: ownProps.params.country
+  };
 }
 
 export default connect(mapStateToProps, actions)(Country);
