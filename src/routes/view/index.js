@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import nl2br from 'react-newline-to-break';
 
+import Sidebar from './sidebar';
 import Title from './components/title';
 import Street from './street_view/street_view_component';
 import Comments from './comments/';
-import Locations from './components/locations';
 
-import './sidebar.css';
+import './view.css';
 
 /** 
  *  Function which when given a parameter term, searches locations so that it's
@@ -54,7 +54,7 @@ class View extends Component {
     loadData(this.props);
   }
 
-  // Scroll the page to the top once mounted
+  // Scroll the page on any rerenders
   componentWillUpdate() {
     window.scrollTo(0, 0);
   }
@@ -62,10 +62,6 @@ class View extends Component {
   // Reload the data if any the props have changed
   componentWillReceiveProps(nextProps) {
     const {term, allviews, setView, getComments} = this.props;
-
-    if (nextProps.term !== term) {
-      loadData(nextProps);
-    }
 
     // Preemptively load in the first view and it's comments
     if (nextProps.allviews !== allviews) {
@@ -77,54 +73,13 @@ class View extends Component {
     }
   }
 
-  // If the user requests a new view, load it and its comments in
-  setNextView(item) {
-    const {setView, getComments} = this.props;
-
-    setView(item);
-    getComments(item._id);
-
-    // Show the navigation sidebar if on mobile
-    if (window.screen.width < 768) {
-      this.toggleSidebar();
-    }
-  }
-
-  // Show all of the possible locations in the sidebar depending on the view types selected
-  renderLocations(location) {
-
-    let currentType = '';
-    let currentTypeHTML = '';
-
-    return location.map((item) => {
-      currentTypeHTML = '';
-      // Create a header for the type if it has not been created yet
-      if (currentType !== item.type) {
-        currentType = item.type;
-        // If a city page exists, put it at the front of the array so that it's loaded first
-        if (item.type !== "_city") {
-          currentTypeHTML = <p className="type-header capitalize">{item.type}</p>;
-        }
-      }
-
-      return (
-        <div key={item._id}>
-          {currentTypeHTML}
-          <div onClick={() => this.setNextView(item)}>
-            <Locations props={item} />
-          </div>
-        </div>
-      );
-    });
-  }
-
   // Toggle the sidebar to open or close it
   toggleSidebar() {
     document.getElementById("wrapper").classList.toggle("toggled");
   }
 
   render() {
-    const {allviews, currentView} = this.props;
+    const {allviews, currentView, setView, getComments} = this.props;
 
     // Notfy the user that the locations are loading if they aren't ready
     if (!allviews || !currentView) {
@@ -136,50 +91,45 @@ class View extends Component {
     }
 
     return (
-      <div>
-        <div className="padded-top container" id="wrapper">
-          <div id="sidebar-wrapper">
-            <ul className="sidebar-nav">
-              {this.renderLocations(allviews)}
-            </ul>
-          </div>
-          <div id="page-content-wrapper">
-            <div className="">
-              <div className="row">
-                <div className="col-lg-12">
-                  <div className="view-menu visible-xs">
-                    <button onClick={() => { this.toggleSidebar() } } className="btn btn-primary pull-left viewBtn" id="menu-toggle">Views</button>
-                    <br />
-                  </div>
-                  <Title cur={currentView} all={allviews} />
+      <div className="padded-top container" id="wrapper">
+        <Sidebar 
+          views={allviews} 
+          setView={setView} 
+          getComments={getComments}
+          toggleSidebar={this.toggleSidebar} />
+        <div id="page-content-wrapper">
+          <div className="">
+            <div className="row">
+              <div className="col-lg-12">
+                <div className="view-menu visible-xs">
+                  <button onClick={() => { this.toggleSidebar() } } className="btn btn-primary pull-left viewBtn" id="menu-toggle">Views</button>
+                  <br />
+                </div>
+                <Title cur={currentView} all={allviews} />
+                <hr />
+                <div className="view">
+                  <Street view={currentView.view} />
                   <hr />
-                  <div className="view">
-                    <Street view={currentView.view} />
-                    <hr />
-                    <div className="about">
-                      <img
-                        className="aboutPic"
-                        src={currentView.data.image}
-                        role="presentation" />
-                      <p>
-                        {nl2br(cleanText(currentView.data.info))}
-                        <span>
-                          Read more <a target="_blank" href={currentView.data.link}>here</a>.
+                  <div className="about">
+                    <img
+                      className="aboutPic"
+                      src={currentView.data.image}
+                      role="presentation" />
+                    <p>
+                      {nl2br(cleanText(currentView.data.info))}
+                      <span>
+                        Read more <a target="_blank" href={currentView.data.link}>here</a>.
                                         </span>
-                      </p>
-                    </div>
-                    <hr />
-                    <h3>Comments</h3>
-                    <Comments />
-                    <hr />
+                    </p>
                   </div>
+                  <hr />
+                  <h3>Comments</h3>
+                  <Comments />
+                  <hr />
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className="temp">
-
         </div>
       </div>
     );
