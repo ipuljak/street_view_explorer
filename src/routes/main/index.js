@@ -1,14 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
-import nl2br from 'react-newline-to-break';
 
 import Sidebar from './sidebar';
-import Title from './components/title';
-import Street from './street_view/street_view_component';
-import Comments from './comments/';
+import View from './view';
 
-import './view.css';
+import './main.css';
 
 /** 
  *  Function which when given a parameter term, searches locations so that it's
@@ -16,14 +13,8 @@ import './view.css';
  *  props (primarily for asynchronous loading given parameters and new views)
  */
 const loadData = props => {
+  console.log("Load data term", props.term);
   props.searchLocations(props.term);
-}
-
-/**
- *  Function to clean newlines and other special characters in some text
- */
-const cleanText = text => {
-  return text.replace(/\\n/g, '\n').replace(/\n\n/g, '\n').replace(/\\"/g, '"');
 }
 
 /**
@@ -42,11 +33,17 @@ const fieldSorter = fields => {
  *      - allviews (the list of views that should be rendered on the page)
  *      - currentView (the currently desired view to be rendered)
  */
-class View extends Component {
+class Main extends Component {
   static propTypes = {
     term: PropTypes.string.isRequired,
     searchLocations: PropTypes.func.isRequired,
     setView: PropTypes.func.isRequired
+  }
+
+  constructor(props) {
+    super();
+
+    //this.state = {view: null};
   }
 
   // Load the data in immediately
@@ -59,15 +56,37 @@ class View extends Component {
     window.scrollTo(0, 0);
   }
 
+  shouldComponentUpdate(nextProps) {
+    const {allviews, term} = this.props;
+
+    console.log("should update", nextProps.term, term);
+
+    if (nextProps.term !== term) {
+      console.log("TERM IS CALLED");
+      return false;
+    }
+
+    if (nextProps.allviews !== allviews) {
+      console.log("ALLVIEWS IS CALLED");
+      return false;
+    }
+
+    return true;
+  }
+
   // Reload the data if any the props have changed
   componentWillReceiveProps(nextProps) {
-    const {term, allviews, setView, getComments} = this.props;
+    const {allviews, setView, getComments} = this.props;
 
     // Preemptively load in the first view and it's comments
     if (nextProps.allviews !== allviews) {
       // Sort the locations first by type and then name
       const sortedLocations = nextProps.allviews.sort(fieldSorter(['type', 'name']));
-      // Set the current view and fetch its comments'
+      // Set the current view and fetch its comments
+      
+      //this.setState({view:sortedLocations[0]});
+      //console.log(this.state);
+      
       setView(sortedLocations[0]);
       getComments(sortedLocations[0]._id)
     }
@@ -92,45 +111,14 @@ class View extends Component {
 
     return (
       <div className="padded-top container" id="wrapper">
-        <Sidebar 
-          views={allviews} 
-          setView={setView} 
+        <Sidebar
+          views={allviews}
+          setView={setView}
           getComments={getComments}
           toggleSidebar={this.toggleSidebar} />
-        <div id="page-content-wrapper">
-          <div className="">
-            <div className="row">
-              <div className="col-lg-12">
-                <div className="view-menu visible-xs">
-                  <button onClick={() => { this.toggleSidebar() } } className="btn btn-primary pull-left viewBtn" id="menu-toggle">Views</button>
-                  <br />
-                </div>
-                <Title cur={currentView} all={allviews} />
-                <hr />
-                <div className="view">
-                  <Street view={currentView.view} />
-                  <hr />
-                  <div className="about">
-                    <img
-                      className="aboutPic"
-                      src={currentView.data.image}
-                      role="presentation" />
-                    <p>
-                      {nl2br(cleanText(currentView.data.info))}
-                      <span>
-                        Read more <a target="_blank" href={currentView.data.link}>here</a>.
-                                        </span>
-                    </p>
-                  </div>
-                  <hr />
-                  <h3>Comments</h3>
-                  <Comments />
-                  <hr />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <View 
+          currentView={currentView}
+          toggleSidebar={this.toggleSidebar} />
       </div>
     );
   }
@@ -144,4 +132,4 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps, actions)(View);
+export default connect(mapStateToProps, actions)(Main);

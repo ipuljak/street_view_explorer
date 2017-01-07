@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { apiKEY } from '../../../config.js';
+import { apiKEY } from '../../../../config.js';
 
 import ReactStreetview from './street_view_container';
 
@@ -30,6 +30,8 @@ const Street = item => {
     addressControl: false,
     motionTracking: false
   };
+
+  console.log("New view", viewOptions);
 
   return (
     <div style={{

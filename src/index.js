@@ -19,7 +19,7 @@ import Privacy from './routes/footer/privacy';
 import Countries from './routes/countries';
 import Categories from './routes/categories';
 import Country from './routes/country';
-import View from './routes/view';
+import Main from './routes/main';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
@@ -45,7 +45,7 @@ ReactDOM.render(
         <Route name='countries' path='/countries' component={Countries} />
         <Route name='categories' path='/categories' component={Categories} />
         <Route name='country' path='/country/:country' component={Country} />
-        <Route name='term' path='/location/:term' component={View} />
+        <Route name='term' path='/location/:term' component={Main} />
       </Route>
     </Router>
   </Provider>

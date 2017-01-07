@@ -5,16 +5,17 @@ import Locations from './locations';
 class Sidebar extends Component {
   // If the user requests a new view, load it and its comments in
   setNextView(item) {
-    const {setView, getComments} = this.props;
+    const {setView, getComments, toggleSidebar} = this.props;
 
     setView(item);
     getComments(item._id);
 
     // Show the navigation sidebar if on mobile
     if (window.screen.width < 768) {
-      this.toggleSidebar();
+      toggleSidebar();
     }
   }
+
   // Show all of the possible locations in the sidebar depending on the view types selected
   renderLocations(location) {
     let currentType = '';

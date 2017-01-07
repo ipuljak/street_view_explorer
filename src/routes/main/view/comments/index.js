@@ -2,10 +2,10 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
-import * as actions from '../../../actions';
-import './comments.css';
-
+import * as actions from '../../../../actions';
 import CommentList from './comment_list';
+
+import './comments.css';
 
 /**
  *  Class container Comments which is responsible for rendering the appropriate logic for comments for each view
