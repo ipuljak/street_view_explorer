@@ -7,16 +7,6 @@ import View from './view';
 
 import './main.css';
 
-/** 
- *  Function which when given a parameter term, searches locations so that it's
- *  views may be rendered. Will be called each time the component receives new
- *  props (primarily for asynchronous loading given parameters and new views)
- */
-const loadData = props => {
-  console.log("Load data term", props.term);
-  props.searchLocations(props.term);
-}
-
 /**
  *  Sort an array of objects given a list of field parameters to sort by
  */
@@ -35,20 +25,16 @@ const fieldSorter = fields => {
  */
 class Main extends Component {
   static propTypes = {
-    term: PropTypes.string.isRequired,
+    //term: PropTypes.string.iuired,
     searchLocations: PropTypes.func.isRequired,
     setView: PropTypes.func.isRequired
   }
 
-  constructor(props) {
-    super();
-
-    //this.state = {view: null};
-  }
-
   // Load the data in immediately
   componentWillMount() {
-    loadData(this.props);
+    console.log("OWNPROPS", this.props.idd);
+    // Search for new locations based on the parameter from react-router URL
+    this.props.searchLocations(this.props.params.term);
   }
 
   // Scroll the page on any rerenders
@@ -57,39 +43,25 @@ class Main extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    const {allviews, term} = this.props;
+    const {allviews, currentView, setView, getComments} = this.props;
 
-    console.log("should update", nextProps.term, term);
+    console.log("SHOULD UPDATE", this.props.idd);
 
-    if (nextProps.term !== term) {
-      console.log("TERM IS CALLED");
-      return false;
-    }
-
+    // Preemptively load in the first view and it's comments and prevent a render
     if (nextProps.allviews !== allviews) {
-      console.log("ALLVIEWS IS CALLED");
+      // Sort the locations first by type and then name
+      const sortedLocations = nextProps.allviews.sort(fieldSorter(['type', 'name']));
+      // Set the current view and fetch its comments
+      setView(sortedLocations[0]);
+      getComments(sortedLocations[0]._id)
       return false;
     }
 
     return true;
   }
 
-  // Reload the data if any the props have changed
-  componentWillReceiveProps(nextProps) {
-    const {allviews, setView, getComments} = this.props;
-
-    // Preemptively load in the first view and it's comments
-    if (nextProps.allviews !== allviews) {
-      // Sort the locations first by type and then name
-      const sortedLocations = nextProps.allviews.sort(fieldSorter(['type', 'name']));
-      // Set the current view and fetch its comments
-      
-      //this.setState({view:sortedLocations[0]});
-      //console.log(this.state);
-      
-      setView(sortedLocations[0]);
-      getComments(sortedLocations[0]._id)
-    }
+  componentWillUnmount() {
+    
   }
 
   // Toggle the sidebar to open or close it
@@ -97,16 +69,23 @@ class Main extends Component {
     document.getElementById("wrapper").classList.toggle("toggled");
   }
 
+  // Check that all the appropriate data types have been loaded in before render
+  handleLoading() {
+    const {allviews, currentView} = this.props;
+
+    return (!allviews || !currentView || 
+      (allviews[0].location.city.toLowerCase() !== this.props.params.term.toLowerCase() &&
+        allviews[0].type !== this.props.params.term && this.props.params.term !== 'landmark'));
+  }
+
   render() {
     const {allviews, currentView, setView, getComments} = this.props;
 
     // Notfy the user that the locations are loading if they aren't ready
-    if (!allviews || !currentView) {
-      return (
-        <div className="padded-top">
-          <h2><i>Loading...</i></h2>
-        </div>
-      );
+    if (this.handleLoading()) {
+      return (<div className="padded-top">
+        <h2><i>Loading...</i></h2>
+      </div>);
     }
 
     return (
@@ -116,7 +95,7 @@ class Main extends Component {
           setView={setView}
           getComments={getComments}
           toggleSidebar={this.toggleSidebar} />
-        <View 
+        <View
           currentView={currentView}
           toggleSidebar={this.toggleSidebar} />
       </div>
@@ -128,7 +107,9 @@ const mapStateToProps = (state, ownProps) => {
   return {
     allviews: state.explorer.allviews,
     currentView: state.explorer.view,
-    term: ownProps.params.term
+    idd: ownProps.routeParams.term
+    //term: ownProps.params.term,
+    //loading: state.explorer.loading
   };
 };
 

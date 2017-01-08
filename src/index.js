@@ -7,6 +7,8 @@ import reduxThunk from 'redux-thunk';
 import reducers from './reducers';
 import { AUTH_USER } from './actions/types';
 
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
+
 //import RequireAuth from './core/Auth/require_auth';
 
 // Components to route
@@ -33,9 +35,11 @@ if (token) {
   store.dispatch({ type: AUTH_USER });
 }
 
+const history = syncHistoryWithStore(browserHistory, store);
+
 ReactDOM.render(
   <Provider store={store}>
-    <Router onUpdate={() => window.scrollTo(0, 0)} history={browserHistory}>
+    <Router onUpdate={() => window.scrollTo(0, 0)} history={history}>
       <Route path='/' component={App}>
         <IndexRoute component={Home} />
         <Route name='login' path='/signin' component={Signin} />
