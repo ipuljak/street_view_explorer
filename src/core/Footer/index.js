@@ -8,7 +8,7 @@ import './footer.css';
  */
 const Footer = () => {
 	return (
-		<section className="footer">
+		<footer className="footer">
 			<div>
 			
 				<h3><i className="fa fa-external-link"></i> Links</h3>
@@ -27,7 +27,7 @@ const Footer = () => {
 					<a target="__blank" href="https://www.github.com/ipuljak"><i className="fa fa-github"></i></a>
 				</div>
 			</div>
-		</section>
+		</footer>
 	);
 }
 

@@ -42,7 +42,7 @@ class Signin extends Component {
     const {handleSubmit} = this.props;
 
     return (
-      <div className="padded-top container">
+      <div className="container">
         <h1>Sign In</h1>
         <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
           <div>

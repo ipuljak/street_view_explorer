@@ -2,7 +2,7 @@ import React from 'react';
 
 import { apiKEY } from '../../../../config.js';
 
-import ReactStreetview from './street_view_container';
+import ReactStreetview from './street_view';
 
 
 /**

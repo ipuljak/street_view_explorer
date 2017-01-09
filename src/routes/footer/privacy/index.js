@@ -7,7 +7,7 @@ import Footer from '../../../core/Footer';
 const Privacy = () => {
   return (
     <div>
-      <div className="container privacy padded-top">
+      <div className="container privacy">
         <h1>Privacy Policy</h1>
         <hr />
 

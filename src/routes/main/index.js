@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
@@ -24,15 +24,8 @@ const fieldSorter = fields => {
  *      - currentView (the currently desired view to be rendered)
  */
 class Main extends Component {
-  static propTypes = {
-    //term: PropTypes.string.iuired,
-    searchLocations: PropTypes.func.isRequired,
-    setView: PropTypes.func.isRequired
-  }
-
   // Load the data in immediately
   componentWillMount() {
-    console.log("OWNPROPS", this.props.idd);
     // Search for new locations based on the parameter from react-router URL
     this.props.searchLocations(this.props.params.term);
   }
@@ -43,9 +36,7 @@ class Main extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    const {allviews, currentView, setView, getComments} = this.props;
-
-    console.log("SHOULD UPDATE", this.props.idd);
+    const {allviews, setView, getComments} = this.props;
 
     // Preemptively load in the first view and it's comments and prevent a render
     if (nextProps.allviews !== allviews) {
@@ -60,22 +51,24 @@ class Main extends Component {
     return true;
   }
 
-  componentWillUnmount() {
-    
-  }
-
   // Toggle the sidebar to open or close it
   toggleSidebar() {
     document.getElementById("wrapper").classList.toggle("toggled");
   }
 
-  // Check that all the appropriate data types have been loaded in before render
+  // Check that data has been loaded in and work around some specific use cases before rendering
   handleLoading() {
-    const {allviews, currentView} = this.props;
+    const {allviews, params} = this.props;
 
-    return (!allviews || !currentView || 
-      (allviews[0].location.city.toLowerCase() !== this.props.params.term.toLowerCase() &&
-        allviews[0].type !== this.props.params.term && this.props.params.term !== 'landmark'));
+    return (
+      // Check the page has views to display
+      !allviews || 
+      // Check that the city location matches the URL if it's a city term
+      (allviews[0].location.city.toLowerCase() !== params.term.toLowerCase() &&
+      // Check that the type location matches the URL if it's a type term
+      allviews[0].type !== params.term && 
+      // Check that the term is not a landmark
+      params.term !== 'landmark'));
   }
 
   render() {
@@ -83,13 +76,11 @@ class Main extends Component {
 
     // Notfy the user that the locations are loading if they aren't ready
     if (this.handleLoading()) {
-      return (<div className="padded-top">
-        <h2><i>Loading...</i></h2>
-      </div>);
+      return <h2><i>Loading...</i></h2>;
     }
 
     return (
-      <div className="padded-top container" id="wrapper">
+      <div className="container" id="wrapper">
         <Sidebar
           views={allviews}
           setView={setView}
@@ -106,10 +97,7 @@ class Main extends Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     allviews: state.explorer.allviews,
-    currentView: state.explorer.view,
-    idd: ownProps.routeParams.term
-    //term: ownProps.params.term,
-    //loading: state.explorer.loading
+    currentView: state.explorer.view
   };
 };
 

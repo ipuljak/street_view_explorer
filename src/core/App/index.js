@@ -17,7 +17,9 @@ class App extends Component {
       <MuiThemeProvider>
         <div className="App">
           <Header />
-          {this.props.children}
+          <div className="padded-top">
+            {this.props.children}
+          </div>
         </div>
       </MuiThemeProvider>
     );

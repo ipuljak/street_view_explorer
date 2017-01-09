@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import nl2br from 'react-newline-to-break';
 
-import Street from './street_view/street_view_component';
-import Comments from './comments/';
+import Street from './street_view';
+import Info from './info';
+import Comments from './comments';
 
 /**
- *  Function to clean newlines and other special characters in some text
+ *  Component which renders the entire view. Displays:
+ *    - A button to toggle the sidebar
+ *    - The title
+ *    - The street view panorama window
+ *    - The view's information (picture and text)
+ *    - The comments section
  */
-const cleanText = text => {
-  return text.replace(/\\n/g, '\n').replace(/\n\n/g, '\n').replace(/\\"/g, '"');
-}
-
 class View extends Component {
   render() {
     const {currentView, toggleSidebar} = this.props;
@@ -28,17 +29,7 @@ class View extends Component {
             <div className="view">
               <Street view={currentView.view} />
               <hr />
-              <div className="about">
-                <img
-                  className="aboutPic"
-                  src={currentView.data.image}
-                  role="presentation" />
-                <p>
-                  {nl2br(cleanText(currentView.data.info))}
-                  <span>
-                    Read more <a target="_blank" href={currentView.data.link}>here</a>.</span>
-                </p>
-              </div>
+              <Info data={currentView.data} />
               <hr />
               <h3>Comments</h3>
               <Comments />

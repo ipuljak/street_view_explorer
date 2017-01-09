@@ -45,7 +45,7 @@ class Countries extends Component {
 
   render() {
     return (
-      <div className="padded-top">
+      <div>
         <div className="container-fluid">
           <div className="col-lg-12 text-center">
             <h2 className="section-heading">Countries of the World</h2>

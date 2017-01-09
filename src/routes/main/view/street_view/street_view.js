@@ -33,7 +33,6 @@ class ReactStreetview extends React.Component {
 		super();
 		this.state = {
 			streetView: null,
-			//domElementId: 'street-view-' + Math.floor(Math.random() * 1000000)
 			domElementId: 'street-view'
 		};
 	}
@@ -65,12 +64,6 @@ class ReactStreetview extends React.Component {
 
 	componentWillReceiveProps(nextProps) {
 		this.update(ReactDOM.findDOMNode(this), nextProps);
-		//ReactDOM.unmountComponentAtNode(ReactDOM.findDOMNode(this));
-	}
-
-	componentWillUnmount() {
-		//console.log("AM I EVER CALLED", this);
-		//ReactDOM.unmountComponentAtNode(ReactDOM.findDOMNode(this));
 	}
 
 	render() {

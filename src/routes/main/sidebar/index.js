@@ -36,7 +36,7 @@ class Sidebar extends Component {
         <div key={item._id}>
           {currentTypeHTML}
           <div onClick={() => this.setNextView(item)}>
-            <Locations props={item} />
+            <Locations item={item} />
           </div>
         </div>
       );

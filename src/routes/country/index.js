@@ -52,7 +52,7 @@ class Country extends Component {
     if (!country) {
       // FUTURE UPDATE: render an animated loading icon instead
       return (
-        <div className="padded-top">
+        <div>
           <h2>Loading...</h2>
           <Footer />
         </div>
@@ -62,7 +62,7 @@ class Country extends Component {
     else {
       return (
         <div>
-          <div className="container padded-top">
+          <div className="container">
             <CountryView props={country} />
           </div>
           <Footer />
