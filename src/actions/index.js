@@ -13,7 +13,7 @@ import {
   CURRENT_COMMENTS
 } from './types';
 
-const ROOT_URL = 'http://138.197.143.248:3001';
+const ROOT_URL = 'http://138.197.143.248:3001/api/street_view';
 
 /**
  * ========================================================
@@ -86,7 +86,7 @@ export function authError(error) {
  *  Fetch all the distinct categories of locations from the API server
  */
 export function getDistincts() {
-  const API_CALL = `${ROOT_URL}/api/street_view/get_distincts`;
+  const API_CALL = `${ROOT_URL}/info/get_distincts`;
   return function (dispatch) {
     axios.get(API_CALL)
       .then(response => {
@@ -102,7 +102,7 @@ export function getDistincts() {
  *  Given a country, fetch its information and cities
  */
 export function setCountry(term) {
-  const API_CALL = `${ROOT_URL}/api/street_view/get_country_info?country=${term}`;
+  const API_CALL = `${ROOT_URL}/info/get_country_info?country=${term}`;
   return function (dispatch) {
     axios.get(API_CALL)
       .then(response => {
@@ -118,7 +118,7 @@ export function setCountry(term) {
  *  Return a list of locations given a search term (city, type, etc)
  */
 export function searchLocations(term) {
-  const API_CALL = `${ROOT_URL}/api/street_view/search_locations?search=${term}`;
+  const API_CALL = `${ROOT_URL}/info/search_locations?search=${term}`;
   return function (dispatch) {
     axios.get(API_CALL)
       .then(response => {
@@ -134,7 +134,7 @@ export function searchLocations(term) {
  *  Return a list of comments given a view ID
  */
 export function getComments(id) {
-  const API_CALL = `${ROOT_URL}/api/street_view/get_comments?id=${id}`;
+  const API_CALL = `${ROOT_URL}/comments/get_comments?id=${id}`;
   return function (dispatch) {
     axios.get(API_CALL)
       .then(response => {

@@ -14,9 +14,9 @@ export default function (state = {}, action) {
     // Set types to be the categories/countries retrieved from the API
     case FETCH_TYPES:
       return {...state, types: action.payload };
-    // Set allviews to be the list of available views once given a category/country
+    // Set allViews to be the list of available views once given a category/country
     case VIEWS_BY_TYPE:
-      return {...state, allviews: action.payload };
+      return {...state, allViews: action.payload };
     // Set country to be country retrieved from the API
     case CURRENT_COUNTRY:
       return {...state, country: action.payload };

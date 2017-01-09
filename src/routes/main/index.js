@@ -20,7 +20,7 @@ const fieldSorter = fields => {
 
 /**
  *  Class component Type which acts as a container listening for changes in:
- *      - allviews (the list of views that should be rendered on the page)
+ *      - allViews (the list of views that should be rendered on the page)
  *      - currentView (the currently desired view to be rendered)
  */
 class Main extends Component {
@@ -36,12 +36,12 @@ class Main extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    const {allviews, setView, getComments} = this.props;
+    const {allViews, setView, getComments} = this.props;
 
     // Preemptively load in the first view and it's comments and prevent a render
-    if (nextProps.allviews !== allviews) {
+    if (nextProps.allViews !== allViews) {
       // Sort the locations first by type and then name
-      const sortedLocations = nextProps.allviews.sort(fieldSorter(['type', 'name']));
+      const sortedLocations = nextProps.allViews.sort(fieldSorter(['type', 'name']));
       // Set the current view and fetch its comments
       setView(sortedLocations[0]);
       getComments(sortedLocations[0]._id)
@@ -58,21 +58,21 @@ class Main extends Component {
 
   // Check that data has been loaded in and work around some specific use cases before rendering
   handleLoading() {
-    const {allviews, params} = this.props;
+    const {allViews, params} = this.props;
 
     return (
       // Check the page has views to display
-      !allviews || 
+      !allViews || 
       // Check that the city location matches the URL if it's a city term
-      (allviews[0].location.city.toLowerCase() !== params.term.toLowerCase() &&
+      (allViews[0].location.city.toLowerCase() !== params.term.toLowerCase() &&
       // Check that the type location matches the URL if it's a type term
-      allviews[0].type !== params.term && 
+      allViews[0].type !== params.term && 
       // Check that the term is not a landmark
       params.term !== 'landmark'));
   }
 
   render() {
-    const {allviews, currentView, setView, getComments} = this.props;
+    const {allViews, currentView, setView, getComments} = this.props;
 
     // Notfy the user that the locations are loading if they aren't ready
     if (this.handleLoading()) {
@@ -82,7 +82,7 @@ class Main extends Component {
     return (
       <div className="container" id="wrapper">
         <Sidebar
-          views={allviews}
+          views={allViews}
           setView={setView}
           getComments={getComments}
           toggleSidebar={this.toggleSidebar} />
@@ -96,7 +96,7 @@ class Main extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    allviews: state.explorer.allviews,
+    allViews: state.explorer.allViews,
     currentView: state.explorer.view
   };
 };

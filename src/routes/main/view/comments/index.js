@@ -24,7 +24,7 @@ class Comments extends Component {
     };
 
     const VIEW_ID = currentView._id;
-    const API_URL = `http://138.197.143.248:3001/api/street_view/post_comment?id=${VIEW_ID}`;
+    const API_URL = `http://138.197.143.248:3001/api/street_view/comments/post_comment?id=${VIEW_ID}`;
 
     axios.post(API_URL, data, {
       headers: { authorization: localStorage.getItem('token') }

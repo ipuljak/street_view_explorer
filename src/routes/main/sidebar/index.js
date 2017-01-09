@@ -18,23 +18,22 @@ class Sidebar extends Component {
 
   // Show all of the possible locations in the sidebar depending on the view types selected
   renderLocations(location) {
-    let currentType = '';
-    let currentTypeHTML = '';
+    let type, typeHTML = '';
 
     return location.map((item) => {
-      currentTypeHTML = '';
+      type = '';
       // Create a header for the type if it has not been created yet
-      if (currentType !== item.type) {
-        currentType = item.type;
+      if (type !== item.type) {
+        type = item.type;
         // If a city page exists, put it at the front of the array so that it's loaded first
         if (item.type !== "_city") {
-          currentTypeHTML = <p className="type-header capitalize">{item.type}</p>;
+          typeHTML = <p className="type-header capitalize">{item.type}</p>;
         }
       }
 
       return (
         <div key={item._id}>
-          {currentTypeHTML}
+          {typeHTML}
           <div onClick={() => this.setNextView(item)}>
             <Locations item={item} />
           </div>
