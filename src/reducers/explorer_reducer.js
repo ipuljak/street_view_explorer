@@ -3,7 +3,10 @@ import {
   VIEWS_BY_TYPE,
   CURRENT_COUNTRY,
   CURRENT_VIEW,
-  CURRENT_COMMENTS
+  CURRENT_COMMENTS,
+  USER_FAVORITES,
+  ADD_FAVORITE,
+  REMOVE_FAVORITE
 } from '../actions/types';
 
 /**
@@ -26,6 +29,19 @@ export default function (state = {}, action) {
     // Set comments to be the comments of the currently selected view
     case CURRENT_COMMENTS:
       return {...state, comments: action.payload };
+    // Set favorites to be a list of the user's favorite views
+    case USER_FAVORITES:
+      return {...state, favorites: action.payload};
+    // Add a favorite into the list of a user's favorite views
+    case ADD_FAVORITE:
+      return {...state, favorites: [...state.favorites, action.payload]};
+    // Remove a favorite into the list of a user's favorite views
+    case REMOVE_FAVORITE:
+      var index = state.favorites.indexOf(action.payload);
+      if (index > -1) {
+        state.favorites.splice(index, 1);
+      }
+      return {...state, favorites: [...state.favorites]};
     default:
       return state;
   }

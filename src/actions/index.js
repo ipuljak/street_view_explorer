@@ -4,13 +4,17 @@ import { browserHistory } from 'react-router';
 
 import {
   AUTH_USER,
+  AUTH_NAME,
   UNAUTH_USER,
   AUTH_ERROR,
   FETCH_TYPES,
   VIEWS_BY_TYPE,
   CURRENT_COUNTRY,
   CURRENT_VIEW,
-  CURRENT_COMMENTS
+  CURRENT_COMMENTS,
+  USER_FAVORITES,
+  ADD_FAVORITE,
+  REMOVE_FAVORITE
 } from './types';
 
 const ROOT_URL = 'http://138.197.143.248:3001/api/street_view';
@@ -33,6 +37,11 @@ export function signinUser({username, password}) {
         dispatch({ type: AUTH_USER });
         // - Save the JWT token
         localStorage.setItem('token', response.data.token);
+        // - Save their username
+        dispatch({
+          type: AUTH_NAME,
+          payload: username
+        });
         // - Redirect to the home route
         browserHistory.push('/');
       })
@@ -52,6 +61,10 @@ export function signupUser({username, password}) {
       .then(response => {
         dispatch({ type: AUTH_USER });
         localStorage.setItem('token', response.data.token);
+        dispatch({
+          type: AUTH_NAME,
+          payload: username
+        });
         browserHistory.push('/');
       })
       .catch(error => dispatch(authError(error.response.data.error)));
@@ -141,6 +154,58 @@ export function getComments(id) {
         dispatch({
           type: CURRENT_COMMENTS,
           payload: response.data
+        });
+      });
+  }
+}
+
+/**
+ *  Return a list of a user's favorite views given their username
+ */
+export function getFavorites(username) {
+  const API_CALL = `${ROOT_URL}/favorites/get_favorites?username=${username}`;
+  return function (dispatch) {
+    axios.get(API_CALL)
+      .then(response => {
+        dispatch({
+          type: USER_FAVORITES,
+          payload: response.data
+        });
+      });
+  }
+}
+
+/**
+ *  Add a favorite view to an authenticated user given a view id
+ */
+export function favorite(id) {
+  const API_CALL = `${ROOT_URL}/favorites/add_favorite?id=${id}`;
+  return function (dispatch) {
+    axios.put(API_CALL, {}, {
+      headers: { authorization: localStorage.getItem('token') }
+    })
+      .then(response => {
+        dispatch({
+          type: ADD_FAVORITE,
+          payload: id
+        });
+      });
+  }
+}
+
+/**
+ *  Remove a favorite view from an authenticated user given a view id
+ */
+export function unfavorite(id) {
+  const API_CALL = `${ROOT_URL}/favorites/remove_favorite?id=${id}`;
+  return function (dispatch) {
+    axios.put(API_CALL, {}, {
+      headers: { authorization: localStorage.getItem('token') }
+    })
+      .then(response => {
+        dispatch({
+          type: REMOVE_FAVORITE,
+          payload: id
         });
       });
   }

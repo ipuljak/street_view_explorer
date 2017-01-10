@@ -5,9 +5,8 @@ import { createStore, applyMiddleware } from 'redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import reduxThunk from 'redux-thunk';
 import reducers from './reducers';
-import { AUTH_USER } from './actions/types';
-
-//import RequireAuth from './core/Auth/require_auth';
+import { AUTH_USER, AUTH_NAME } from './actions/types';
+import { loadState, saveState } from './localStorage';
 
 // Components to route
 import App from './core';
@@ -27,11 +26,21 @@ const store = createStoreWithMiddleware(reducers);
 const token = localStorage.getItem('token');
 
 if (token) {
-  // we need to update application state
-  // if we put any action inside this dispatch, it will be sent off to all of our reducers
-  // we are updating our application before it has been rendered
+  // Let our application know the user is authenticated if a token exists
   store.dispatch({ type: AUTH_USER });
+  store.dispatch({
+    type: AUTH_NAME,
+    payload: JSON.parse(localStorage.state).auth.username
+  });
 }
+
+// Add a listener for our store to be saved to localStorage
+store.subscribe(() => {
+  //saveState(store.getState());
+  saveState({
+    auth: store.getState().auth
+  });
+});
 
 ReactDOM.render(
   <Provider store={store}>

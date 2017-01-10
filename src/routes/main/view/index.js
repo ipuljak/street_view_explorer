@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Street from './street_view';
 import Info from './info';
 import Comments from './comments';
+import FavoriteButton from '../favorite';
 
 /**
  *  Component which renders the entire view. Displays:
@@ -25,6 +26,7 @@ class View extends Component {
               <br />
             </div>
             <h2>{currentView.name}</h2>
+            <FavoriteButton />
             <hr />
             <div className="view">
               <Street view={currentView.view} />

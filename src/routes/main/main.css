@@ -59,6 +59,17 @@ body {
   margin-right: -250px;
 }
 
+
+#fav-button {
+  position: absolute;
+  right: 15px;
+  margin: -10px 0;
+}
+
+#fav-button:hover {
+  background: #ff3535;
+}
+
 /* Sidebar Styles */
 
 .sidebar-nav {
