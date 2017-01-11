@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
@@ -144,6 +143,23 @@ export function searchLocations(term) {
 }
 
 /**
+ *  Set the current view
+ */
+export function setView(location) {
+  return {
+    type: CURRENT_VIEW,
+    payload: location
+  };
+}
+
+/**
+ * ========================================================
+ *                  COMMENTING ACTIONS
+ * ========================================================
+ */
+
+
+/**
  *  Return a list of comments given a view ID
  */
 export function getComments(id) {
@@ -158,6 +174,13 @@ export function getComments(id) {
       });
   }
 }
+
+/**
+ * ========================================================
+ *                  FAVORITING ACTIONS
+ * ========================================================
+ */
+
 
 /**
  *  Return a list of a user's favorite views given their username
@@ -209,14 +232,4 @@ export function unfavorite(id) {
         });
       });
   }
-}
-
-/**
- *  Set the current view
- */
-export function setView(location) {
-  return {
-    type: CURRENT_VIEW,
-    payload: location
-  };
 }

@@ -7,14 +7,12 @@ import React from 'react';
  *  TO DO:
  *      include a note about views that are explorable indoors
  */
-const Locations = props => {
-  const {item} = props;
-  
+const Locations = item => {
   return (
     <div className="list-group-item">
-      {item.name}
+      {item.props.name}
       <div className="cityCountry capitalize">
-        {item.location.city}, {item.location.country}
+        {item.props.location.city}, {item.props.location.country}
       </div>
     </div>
   );

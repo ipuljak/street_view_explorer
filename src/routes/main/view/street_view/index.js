@@ -30,9 +30,7 @@ const Street = item => {
     addressControl: false,
     motionTracking: false
   };
-
-  console.log("New view", viewOptions);
-
+  
   return (
     <div style={{
       margin: '0 auto',

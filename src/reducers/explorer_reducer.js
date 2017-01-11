@@ -4,6 +4,7 @@ import {
   CURRENT_COUNTRY,
   CURRENT_VIEW,
   CURRENT_COMMENTS,
+  DELETE_COMMENT,
   USER_FAVORITES,
   ADD_FAVORITE,
   REMOVE_FAVORITE
@@ -29,6 +30,13 @@ export default function (state = {}, action) {
     // Set comments to be the comments of the currently selected view
     case CURRENT_COMMENTS:
       return {...state, comments: action.payload };
+    // Remove a comment that a user has posted
+    case DELETE_COMMENT:
+      var cIndex = state.comments.indexOf(action.payload);
+      if (cIndex > -1) {
+        state.comments.splice(cIndex, 1);
+      }
+      return {...state, comments: [...state.comments]};
     // Set favorites to be a list of the user's favorite views
     case USER_FAVORITES:
       return {...state, favorites: action.payload};
@@ -37,9 +45,9 @@ export default function (state = {}, action) {
       return {...state, favorites: [...state.favorites, action.payload]};
     // Remove a favorite into the list of a user's favorite views
     case REMOVE_FAVORITE:
-      var index = state.favorites.indexOf(action.payload);
-      if (index > -1) {
-        state.favorites.splice(index, 1);
+      var fIndex = state.favorites.indexOf(action.payload);
+      if (fIndex > -1) {
+        state.favorites.splice(fIndex, 1);
       }
       return {...state, favorites: [...state.favorites]};
     default:

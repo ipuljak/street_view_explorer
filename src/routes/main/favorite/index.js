@@ -6,20 +6,19 @@ import * as actions from '../../../actions';
  *  Container which is responsible for displaying the favorite button
  */
 class FavoriteButton extends Component {
-  /**
-   *  Check that the user is authenticated and that their username
-   *  has been loaded in by the application before rendering
-   */
+  // Check that the user is authenticated and grab their favorites
   componentWillMount() {
     const {favorites, username, authenticated} = this.props;
     let name = '';
 
     if (!favorites && authenticated) {
+      // If the username is not in the state, grab it from local storage
       if (!username) {
         name = JSON.parse(localStorage.state).auth.username;
       } else {
         name = username;
       }
+      // Fetch the favorites
       this.props.getFavorites(name);
     }
   }

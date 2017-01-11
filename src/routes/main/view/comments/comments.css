@@ -2,6 +2,10 @@
     padding:0px;
 }
 
+.newline {
+	display:block;
+}
+
 .panel {
 	position:relative;
 }
@@ -31,7 +35,20 @@
 	border-width:8px;
 }
 
+.panel-body {
+	padding-bottom: 0px;
+}
+
+.post {
+	text-align: left;
+}
+
 #comment {
   margin-bottom: 20px;
+}
+
+#delete-button {
+  position: absolute;
+  right: 15px;
 }
 

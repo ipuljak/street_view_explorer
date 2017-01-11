@@ -5,8 +5,9 @@ import { createStore, applyMiddleware } from 'redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import reduxThunk from 'redux-thunk';
 import reducers from './reducers';
+import throttle from 'lodash/throttle';
 import { AUTH_USER, AUTH_NAME } from './actions/types';
-import { loadState, saveState } from './localStorage';
+import { saveState } from './localStorage';
 
 // Components to route
 import App from './core';
@@ -35,12 +36,12 @@ if (token) {
 }
 
 // Add a listener for our store to be saved to localStorage
-store.subscribe(() => {
+store.subscribe(throttle(() => {
   //saveState(store.getState());
   saveState({
     auth: store.getState().auth
   });
-});
+}, 1000));
 
 ReactDOM.render(
   <Provider store={store}>
