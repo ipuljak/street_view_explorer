@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import * as actions from '../../../actions';
+import * as actions from '../../../../actions';
 
 /**
  *  Container which is responsible for displaying the favorite button

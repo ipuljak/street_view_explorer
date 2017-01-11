@@ -18,7 +18,7 @@ export default function (state = {}, action) {
       return {...state, username: action.payload};
     // If the user has been unauthorized, flag authenticated to false
     case UNAUTH_USER:
-      //state = undefined;
+      state = undefined;
       return {...state, authenticated: false };
     // If there is an error with the authentication, set an error message
     case AUTH_ERROR:

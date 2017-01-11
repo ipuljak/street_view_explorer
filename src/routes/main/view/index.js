@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Street from './street_view';
 import Info from './info';
 import Comments from './comments';
-import FavoriteButton from '../favorite';
+import FavoriteButton from './favorite';
 
 /**
  *  Component which renders the entire view. Displays:
