@@ -16,10 +16,12 @@ const Info = props => {
 
   return (
     <div className="about">
-      <img
-        className="aboutPic"
-        src={data.image}
-        role="presentation" />
+      <div className="aboutImage">
+        <img
+          src={data.image}
+          role="presentation" />
+        <div>{data.source}</div>
+      </div>
       <p>
         {nl2br(cleanText(data.info))}
         <span>Read more <a target="_blank" href={data.link}>here</a>.</span>
