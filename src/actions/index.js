@@ -16,7 +16,7 @@ import {
   REMOVE_FAVORITE
 } from './types';
 
-const ROOT_URL = 'http://138.197.143.248:3001/api/street_view';
+const ROOT_URL = 'https://streetviewtourist.com/api/street_view';
 
 /**
  * ========================================================
