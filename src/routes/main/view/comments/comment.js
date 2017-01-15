@@ -10,7 +10,7 @@ class Comment extends Component {
   deleteComment(id) {
     const { comment, getComments } = this.props;
     const VIEW_ID = comment.view_id;
-    const API_URL = `http://138.197.143.248:3001/api/street_view/comments/delete_comment?id=${id}`;
+    const API_URL = `https://streetviewtourist.com/api/street_view/comments/delete_comment?id=${id}`;
     
     // DELETE the comment from the database
     axios.delete(API_URL, {

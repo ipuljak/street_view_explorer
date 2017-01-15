@@ -39,10 +39,12 @@ const CountryView = (country) => {
       </div>
       <hr />
       <div className="about">
-        <img
-          className="aboutPic"
-          src={view.data.image}
-          role="presentation" />
+        <div className="aboutImage">
+          <img
+            src={view.data.image}
+            role="presentation" />
+          <div>{view.data.source}</div>
+        </div>
         <p>
           {nl2br(info)}
           <span>Read more <a target="_blank" href={view.data.link}>here</a>.</span>
