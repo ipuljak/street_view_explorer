@@ -1,9 +1,40 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
-import { TextField } from 'redux-form-material-ui';
 
 import * as actions from '../../../actions';
+
+/**
+ *  Include the error messages for the inputs
+ */
+const renderInput = field =>
+  <div>
+    <input 
+      {...field.input} 
+      className="sign-field"
+      type={field.type}
+      placeholder={field.placeholder} />
+        {field.meta.touched &&
+        field.meta.error &&
+        <span className="error">{field.meta.error}</span>}
+  </div>
+
+/**
+ *  Validate the form given a username and password
+ */
+const validate = formProps => {
+  const errors = {};
+
+  if (!formProps.username) {
+    errors.username = "Please enter an username.";
+  }
+
+  if (!formProps.password) {
+    errors.password = "Please enter a password.";
+  }
+
+  return errors;
+}
 
 /**
  *  Container responsible for the Signin route
@@ -12,14 +43,6 @@ class Signin extends Component {
   componentWillMount() {
     // Clear any errors from previous pages
     this.props.authError(null);
-  }
-
-  // MaterialUI requirements
-  componentDidMount() {
-    this.refs.username
-      .getRenderedComponent()
-      .getRenderedComponent()
-      .focus()
   }
 
   // Submit the form and attempt to sign in the user
@@ -48,21 +71,20 @@ class Signin extends Component {
           <div>
             <Field
               name="username"
-              component={TextField}
-              hintText="Enter your username"
-              floatingLabelText="Username"
-              ref="username" withRef />
+              component={renderInput}
+              placeholder="Enter your username" />
           </div>
           <div>
             <Field
               name="password"
-              component={TextField}
+              component={renderInput}
               type="password"
-              hintText="Enter your password"
-              floatingLabelText="Password" />
+              placeholder="Enter your password" />
           </div>
           <br />
+          <div className="container">
           {this.renderAlert()}
+          </div>
           <button action="submit" className="btn btn-primary">Sign In</button>
         </form>
       </div>
@@ -76,7 +98,8 @@ const mapStateToProps = state => {
 
 // ReduxForm state
 Signin = reduxForm({
-  form: 'signin'
+  form: 'signin',
+  validate: validate
 })(Signin);
 
 Signin = connect(mapStateToProps, actions)(Signin);

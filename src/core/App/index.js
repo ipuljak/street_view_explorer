@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import Header from '../Header';
 import './App.css';
-
-// Compatibility with MaterialUI clicks
-injectTapEventPlugin();
 
 /**
  *  Main App Component
@@ -14,14 +9,12 @@ injectTapEventPlugin();
 class App extends Component {
   render() {
     return (
-      <MuiThemeProvider>
-        <div className="App">
-          <Header />
-          <div className="padded-top">
-            {this.props.children}
-          </div>
+      <div className="App">
+        <Header />
+        <div className="padded-top">
+          {this.props.children}
         </div>
-      </MuiThemeProvider>
+      </div>
     );
   }
 }

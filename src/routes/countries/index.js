@@ -31,7 +31,7 @@ class Countries extends Component {
             key={item.name}
             to={`/country/${item.name}`}
             style={{ textDecoration: 'none', color: 'black' }}>
-            <div className="col-lg-4 col-md-6">
+            <div className="col-lg-3 col-md-6">
               <div className="thumbnail">
                 <img src={item.data.image} alt="" />
                 <h4>{item.name}</h4>
@@ -46,9 +46,9 @@ class Countries extends Component {
   render() {
     return (
       <div>
-        <div className="container-fluid">
-          <div className="col-lg-12 text-center">
-            <h2 className="section-heading">Countries of the World</h2>
+        <div className="container">
+          <div className="col-lg-12">
+            <h2>Countries of the World</h2>
             <hr className="primary" />
           </div>
           <div className="row">

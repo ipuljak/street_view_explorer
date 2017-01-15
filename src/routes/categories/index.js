@@ -31,7 +31,7 @@ class Categories extends Component {
             key={item.name}
             to={`/location/${item.name.toLowerCase()}`}
             style={{ textDecoration: 'none', color: 'black' }}>
-            <div className="col-lg-4 col-md-6">
+            <div className="col-lg-3 col-md-6">
               <div className="thumbnail">
                 <img src={item.data.image} alt="" />
                 <h4>{item.name}</h4>
@@ -46,8 +46,8 @@ class Categories extends Component {
   render() {
     return (
       <div>
-        <div className="container-fluid">
-          <div className="col-lg-12 text-center">
+        <div className="container">
+          <div className="col-lg-12">
             <h2 className="section-heading">Global Categories</h2>
             <hr className="primary" />
           </div>

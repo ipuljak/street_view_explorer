@@ -11,6 +11,7 @@ body {
   height: 100vh;
   width: 100%;
   font-family: Merriweather, 'Helvetica Neue', Arial, sans-serif;
+  background: white;
 }
 
 h1,
@@ -49,6 +50,7 @@ section {
 }
 
 #header {
+  margin-top: -50px;
   position: relative;
   width: 100%;
   min-height: auto;
@@ -76,7 +78,7 @@ section {
   text-transform: uppercase;
   margin-top: 0;
   margin-bottom: 0;
-  font-size: 30px;
+  font-size: 6vh;
 }
 
 #header .header-content .header-content-inner hr {
@@ -103,10 +105,6 @@ section {
   max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
-}
-
-#header .header-content .header-content-inner h1 {
-  font-size: 50px;
 }
 
 #header .header-content .header-content-inner p {
@@ -239,10 +237,6 @@ section {
   padding-top: 50px;
 }
 
-.section-heading {
-  margin-top: 0;
-}
-
 .selectable p {
   margin-top: 7px;
 }
@@ -267,8 +261,8 @@ section {
 .thumbnail img {
   object-fit: cover;
   padding-top: 15px;
-  height: 300px;
-  width: 500px;
+  height: 20vh;
+  width: 100%;
 }
 
 .thumbnail:hover {

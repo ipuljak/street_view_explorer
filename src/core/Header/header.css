@@ -65,6 +65,22 @@
   background-color: transparent;
 }
 
+.alert {
+  width: 400px;
+}
+
+.sign-field {
+  margin: 5px;
+  width: 50%;
+}
+
+.error {
+  display: block;
+  color: red;
+  font-weight: 700;
+
+}
+
 @media (min-width: 768px) {
   .navbar-default {
     background-color: white;
@@ -104,5 +120,20 @@
   .navbar-default.affix .nav > li > a:hover,
   .navbar-default.affix .nav > li > a:focus:hover {
     color: #6899c1;
+  }
+
+  .alert {
+    width: 50%;
+  }
+
+  .sign-field {
+    margin: 5px;
+    width: 40%;
+  }
+
+  .error {
+    display: block;
+    color: red;
+    font-weight: 700;
   }
 }

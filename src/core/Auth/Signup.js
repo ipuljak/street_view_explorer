@@ -1,9 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
-import { TextField } from 'redux-form-material-ui';
 
 import * as actions from '../../../actions';
+
+/**
+ *  Include the error messages for the inputs
+ */
+const renderInput = field =>
+  <div>
+    <input
+      {...field.input}
+      className="sign-field"
+      type={field.type}
+      placeholder={field.placeholder} />
+    {field.meta.touched &&
+      field.meta.error &&
+      <span className="error">{field.meta.error}</span>}
+  </div>
 
 /**
  *  Validate the form given a username and password
@@ -39,14 +53,6 @@ class Signup extends Component {
     this.props.authError(null);
   }
 
-  // MaterialUI requirements
-  componentDidMount() {
-    this.refs.username
-      .getRenderedComponent()
-      .getRenderedComponent()
-      .focus()
-  }
-
   // Submit the form and attempt to sign the user up
   handleFormSubmit(formProps) {
     this.props.signupUser(formProps);
@@ -73,26 +79,22 @@ class Signup extends Component {
           <div>
             <Field
               name="username"
-              component={TextField}
-              hintText="Enter your desired username"
-              floatingLabelText="Username"
-              ref="username" withRef />
+              component={renderInput}
+              placeholder="Enter your desired username" />
           </div>
           <div>
             <Field
               name="password"
-              component={TextField}
+              component={renderInput}
               type="password"
-              hintText="Enter a password"
-              floatingLabelText="Password" />
+              placeholder="Enter a password" />
           </div>
           <div>
             <Field
               name="passwordConfirm"
-              component={TextField}
+              component={renderInput}
               type="password"
-              hintText="Confirm your password"
-              floatingLabelText="Password Confirm" />
+              placeholder="Confirm your password" />
           </div>
           <br />
           {this.renderAlert()}
