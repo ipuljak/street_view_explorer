@@ -5,15 +5,15 @@ import { Link } from 'react-router';
 import { Navbar, Nav, NavItem, Modal } from 'react-bootstrap';
 import { LinkContainer, IndexLinkContainer } from 'react-router-bootstrap';
 
-import Signin from '../Auth/signin';
-import Signup from '../Auth/signup';
+import Signin from '../Auth/Signin';
+import Signup from '../Auth/Signup';
 
 import './header.css';
 
 /**
  * 	Header component to be displayed at the top of every page
  */
-class Header extends Component {
+export class Header extends Component {
   constructor() {
     super();
     this.state = { 
@@ -25,6 +25,7 @@ class Header extends Component {
     this.close = this.close.bind(this);
   }
 
+  // Open the appropriate modal type (signin vs signup)
   open(modalType) {
     this.setState({ 
       showModal: true,
@@ -32,6 +33,7 @@ class Header extends Component {
     });
   }
 
+  // Close the modal
   close() {
     this.setState({ 
       showModal: false,
@@ -39,6 +41,7 @@ class Header extends Component {
     });
   }
 
+  // If the user has been authenticated, close the modal
   componentWillReceiveProps(nextProps) {
     if (nextProps.authenticated) {
       this.close();
@@ -86,8 +89,8 @@ class Header extends Component {
           <Navbar.Collapse>
             <Nav pullRight>
               <IndexLinkContainer to="/"><NavItem>Home</NavItem></IndexLinkContainer>
-              <LinkContainer to="/countries"><NavItem>Countries</NavItem></LinkContainer>
               <LinkContainer to="/categories"><NavItem>Categories</NavItem></LinkContainer>
+              <LinkContainer to="/countries"><NavItem>Countries</NavItem></LinkContainer>
               {this.renderLinks()}
             </Nav>
           </Navbar.Collapse>
