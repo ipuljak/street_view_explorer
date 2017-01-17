@@ -72,7 +72,7 @@ describe('Header', () => {
       expect(component.state().showModal).toBeTruthy();
     });
 
-    if ('shows a modal when the sign-in button is clicked', () => {
+    it('shows a modal when the sign-in button is clicked', () => {
       const navItem = component.find('.fa-sign-in').first().parent();
       navItem.simulate('click');
       const modal = component.find('Modal').first();
@@ -81,11 +81,11 @@ describe('Header', () => {
   });
 
   describe('when not authenticated', () => {
-    it('shows the user a sign-in NavItem when not authenticated', () => {
+    it('shows the user a sign-in NavItem', () => {
       expect(component.find('.fa-sign-in').length).toEqual(1);
     });
 
-    it('does not show the user a sign out NavItem when not authenticated', () => {
+    it('does not show the user a sign out NavItem', () => {
       expect(component.find('.fa-sign-out').length).toEqual(0);
     });
   });
@@ -98,11 +98,11 @@ describe('Header', () => {
       component = shallow(<Header store={store} />).shallow();
     });
 
-    it('shows the user a sign out NavItem when authenticated', () => {
+    it('shows the user a sign out NavItem', () => {
       expect(component.find('.fa-sign-out').length).toEqual(1);
     });
 
-    it('does not show the user a sign in NavItem when authenticated', () => {
+    it('does not show the user a sign in NavItem', () => {
       expect(component.find('.fa-sign-in').length).toEqual(0);
     });
   });

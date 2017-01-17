@@ -1,12 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import sinon from 'sinon';
 import TestUtils from 'react-addons-test-utils';
 
-import Locations from '../../src/routes/main/sidebar/locations';
 import Sidebar from '../../src/routes/main/sidebar';
 
-const items = [
+let items = [
   {
+    _id: 1,
     name: 'CN Tower',
     location: {
       city: 'Toronto',
@@ -14,6 +15,7 @@ const items = [
     }
   },
   {
+    _id: 2,
     name: 'Punta Rata',
     location: {
       city: 'Brela',
@@ -22,11 +24,30 @@ const items = [
   }
 ];
 
-// describe('Locations', () => {
-//   let wrapper;
-//   wrapper = shallow(<Locations props={item} />);
-//   it('wraps content in a div with list-group-item class', () => {
-//     expect(wrapper.find('.list-group-item').length).toEqual(1);
-//   });
-// });
+let component;
+
+describe('Sidebar', () => {
+  component = shallow(<Sidebar views={items} />);
+
+  it('renders the component', () => {
+    expect(component).toBeDefined();
+  });
+
+  it('has two Locations items', () => {
+    expect(component.find('Locations').length).toEqual(2);
+  });
+
+  describe('views', () => {
+    beforeEach(() => {
+      //sinon.spy(Sidebar.prototype, 'renderLocations');
+      const buttonClick = sinon.spy();
+      component = shallow(<Sidebar views={items} buttonClick={buttonClick} />);
+    });
+
+    it('are clickable', () => {
+      let secondLocation = component.find('Locations').at(1).parent();
+      expect(secondLocation.props().onClick).toBeDefined();
+    });
+  });
+});
 
