@@ -5,7 +5,7 @@ import { Link } from 'react-router';
  *  Functional component that displays a single city for a country.
  *  It contains a Link tag to anchor it to a /location/:city route.
  */
-const City = (city) => {
+const City = city => {
   return (
     <Link
       key={city.name}

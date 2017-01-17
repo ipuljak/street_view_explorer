@@ -19,9 +19,6 @@ let storeStateMock = {
 
 let store, component, links;
 
-/**
- *  Testing the Header component
- */
 describe('Header', () => {
   store = mockStore(storeStateMock);
   component = shallow(<Header store={store} />).shallow();
@@ -48,7 +45,7 @@ describe('Header', () => {
   });
 
   it('renders a NavItem with the text "Categories"', () => {
-    const categoriesNavItem = component.findWhere(n => n.props().to === '/categories')
+    const categoriesNavItem = component.findWhere(n => n.props().to === '/categories');
     expect(categoriesNavItem).toBeDefined();
     expect(categoriesNavItem.childAt(0).childAt(0).text()).toBe('Categories');
   });

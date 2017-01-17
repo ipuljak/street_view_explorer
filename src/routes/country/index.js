@@ -22,7 +22,7 @@ const loadData = props => {
  *  manually entered in the url by the user.
  *      i.e. /country/:term
  */
-class Country extends Component {
+export class Country extends Component {
   static propTypes = {
     term: PropTypes.string.isRequired,
     setCountry: PropTypes.func.isRequired
@@ -48,7 +48,7 @@ class Country extends Component {
   render() {
     const {country} = this.props;
 
-    // If the country has not been loaded in yet, let the user know it's loading'
+    // If the country has not been loaded in yet, let the user know it's loading
     if (!country) {
       // FUTURE UPDATE: render an animated loading icon instead
       return (

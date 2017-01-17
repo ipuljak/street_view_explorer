@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import sinon from 'sinon';
 import TestUtils from 'react-addons-test-utils';
 
 import Locations from '../../src/routes/main/sidebar/locations';

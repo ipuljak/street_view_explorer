@@ -21,7 +21,7 @@ const showCities = (cities) => {
  *  Functional component that renders a list of cities of a country as well as
  *  a photograph and some information about itself.
  */
-const CountryView = (country) => {
+const CountryView = country => {
   const view = country.props.country;
   const info = cleanText(view.data.info);
 
