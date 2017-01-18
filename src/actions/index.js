@@ -94,6 +94,13 @@ export function authError(error) {
  * ========================================================
  */
 
+export function fetchTypes(data) {
+  return {
+    type: FETCH_TYPES,
+    payload: data
+  }
+}
+
 /**
  *  Fetch all the distinct categories of locations from the API server
  */
@@ -102,10 +109,7 @@ export function getDistincts() {
   return function (dispatch) {
     axios.get(API_CALL)
       .then(response => {
-        dispatch({
-          type: FETCH_TYPES,
-          payload: response.data
-        });
+        dispatch(fetchTypes(response.data))
       });
   }
 }
