@@ -63,7 +63,7 @@ class Categories extends Component {
 
 const mapStateToProps = state => {
   return {
-    types: state.explorer.types
+    types: state.streetView.types
   }
 }
 

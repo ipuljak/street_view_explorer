@@ -74,7 +74,7 @@ export class Country extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    country: state.explorer.country,
+    country: state.streetView.country,
     term: ownProps.params.country
   };
 }

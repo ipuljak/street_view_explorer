@@ -11,7 +11,7 @@ import {
 } from '../actions/types';
 
 /**
- *  Main reducer
+ *  Main street_view reducer
  */
 export default function (state = {}, action) {
   switch (action.type) {
@@ -36,20 +36,20 @@ export default function (state = {}, action) {
       if (cIndex > -1) {
         state.comments.splice(cIndex, 1);
       }
-      return {...state, comments: [...state.comments]};
+      return {...state, comments: [...state.comments] };
     // Set favorites to be a list of the user's favorite views
     case USER_FAVORITES:
-      return {...state, favorites: action.payload};
+      return {...state, favorites: action.payload };
     // Add a favorite into the list of a user's favorite views
     case ADD_FAVORITE:
-      return {...state, favorites: [...state.favorites, action.payload]};
+      return {...state, favorites: [...state.favorites, action.payload] };
     // Remove a favorite into the list of a user's favorite views
     case REMOVE_FAVORITE:
       var fIndex = state.favorites.indexOf(action.payload);
       if (fIndex > -1) {
         state.favorites.splice(fIndex, 1);
       }
-      return {...state, favorites: [...state.favorites]};
+      return {...state, favorites: [...state.favorites] };
     default:
       return state;
   }

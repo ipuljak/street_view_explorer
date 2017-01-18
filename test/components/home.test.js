@@ -10,7 +10,7 @@ const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
 let storeStateMock = {
-  explorer: {
+  streetView: {
     types: {}
   }
 };

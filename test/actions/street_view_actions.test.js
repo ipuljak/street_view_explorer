@@ -32,7 +32,7 @@ describe('Street View Actions', () => {
         .reply(200, { body: { test: ['???'] } })
 
         const store = mockStore({test: []});
-        store.dispatch(actions.getDistincts());
+        // store.dispatch(actions.getDistincts());
         // axios.get('/info/get_distincts').then(response => {
         //   expect(response.data).to.be.equal('test data');
         //   done();

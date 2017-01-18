@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import moment from 'moment';
 
@@ -11,7 +11,7 @@ class Comment extends Component {
     const { comment, getComments } = this.props;
     const VIEW_ID = comment.view_id;
     const API_URL = `https://streetviewtourist.com/api/street_view/comments/delete_comment?id=${id}`;
-    
+
     // DELETE the comment from the database
     axios.delete(API_URL, {
       headers: { authorization: localStorage.getItem('token') }
@@ -34,8 +34,8 @@ class Comment extends Component {
 
     if (authenticated && name === comment.username) {
       return (
-        <button 
-          className="btn btn-primary" 
+        <button
+          className="btn btn-primary"
           id="delete-button"
           onClick={() => this.deleteComment(comment._id)} >
           <i className="fa fa-trash-o" /> Delete

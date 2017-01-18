@@ -96,8 +96,8 @@ class Main extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    allViews: state.explorer.allViews,
-    currentView: state.explorer.view
+    allViews: state.streetView.allViews,
+    currentView: state.streetView.view
   };
 };
 

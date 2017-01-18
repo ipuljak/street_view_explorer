@@ -8,7 +8,7 @@ import CountryView from '../../src/routes/country/components/country_view_compon
 // const mockStore = configureMockStore(middlewares);
 
 // let storeStateMock = {
-//   explorer: {
+//   streetView: {
 //     country: {
 //       name: 'Canada',
 //       cities: [

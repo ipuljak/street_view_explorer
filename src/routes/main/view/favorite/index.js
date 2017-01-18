@@ -67,8 +67,8 @@ class FavoriteButton extends Component {
 
 const mapStateToProps = state => {
   return {
-    currentView: state.explorer.view,
-    favorites: state.explorer.favorites,
+    currentView: state.streetView.view,
+    favorites: state.streetView.favorites,
     authenticated: state.auth.authenticated,
     username: state.auth.username
   };

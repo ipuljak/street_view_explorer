@@ -2,12 +2,12 @@ import { combineReducers } from 'redux';
 import {reducer as form} from 'redux-form';
 
 import authReducer from './auth_reducer';
-import explorerReducer from './explorer_reducer';
+import streetViewReducer from './street_view_reducer';
 
 const rootReducer = combineReducers({
     form,
     auth: authReducer,
-    explorer: explorerReducer
+    streetView: streetViewReducer
 });
 
 export default rootReducer;

@@ -83,8 +83,8 @@ class Comments extends Component {
 
 const mapStateToProps = state => {
   return {
-    currentComments: state.explorer.comments,
-    currentView: state.explorer.view,
+    currentComments: state.streetView.comments,
+    currentView: state.streetView.view,
     authenticated: state.auth.authenticated
   };
 };
