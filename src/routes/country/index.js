@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import * as actions from '../../actions';
 
-import CountryView from './components/country_view_component';
+import CountryView from './country_view';
 import Footer from '../../core/Footer';
 
 /** 

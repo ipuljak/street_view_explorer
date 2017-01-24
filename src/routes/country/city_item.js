@@ -13,7 +13,7 @@ const City = city => {
       style={{ textDecoration: 'none', color: 'black' }}>
 
       <div className="col-md-2 col-xs-6 center selectable">
-        <p>{city.name.replace(/\b\w/g, l => l.toUpperCase())}</p>
+        <p className="capitalize">{city.name}</p>
       </div>
     </Link>
   );
