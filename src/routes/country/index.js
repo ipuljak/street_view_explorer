@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
 import CountryView from './country_view';
+import Sidebar from './sidebar';
 import Footer from '../../core/Footer';
+import '../main/main.css';
 
 /** 
  *  Function which when given a parameter term, sets the country so that it's
@@ -45,6 +47,11 @@ export class Country extends Component {
     }
   }
 
+  // Toggle the sidebar to open or close it
+  toggleSidebar() {
+    document.getElementById("wrapper").classList.toggle("toggled");
+  }
+
   render() {
     const {country} = this.props;
 
@@ -61,8 +68,11 @@ export class Country extends Component {
 
     else {
       return (
-        <div>
-          <div className="container">
+        <div className="container" id="wrapper">
+          <Sidebar
+            country={country}
+            toggleSidebar={this.toggleSidebar} />
+          <div>
             <CountryView props={country} />
           </div>
           <Footer />

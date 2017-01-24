@@ -1,22 +1,9 @@
 import React from 'react';
 import nl2br from 'react-newline-to-break';
 
-import City from './city_item';
-
 // Clean some of the special characters that may be in the text
 const cleanText = text => {
   return text.replace(/\\n/g, '\n').replace(/\n\n/g, '\n').replace(/\\"/g, '"');
-}
-
-// Render the cities of the given country
-const showCities = cities => {
-  // Sort the cities
-  cities.sort();
-  return cities.map((item) => {
-    return (
-      <City key={item} name={item} />
-    );
-  })
 }
 
 /**
@@ -30,15 +17,6 @@ const CountryView = country => {
   return (
     <div className="view">
       <h2>{view.name}</h2>
-      <hr />
-      <h3>Cities</h3>
-      <div className="row">
-        <div className="well">
-          <div className="row">
-            {showCities(country.props.cities)}
-          </div>
-        </div>
-      </div>
       <hr />
       <div className="about">
         <div className="aboutImage">

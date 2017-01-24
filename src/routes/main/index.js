@@ -7,9 +7,7 @@ import View from './view';
 
 import './main.css';
 
-/**
- *  Sort an array of objects given a list of field parameters to sort by
- */
+// Sort an array of objects given a list of field parameters to sort by
 const fieldSorter = fields => {
   return (a, b) => fields.map(o => {
     let dir = 1;
