@@ -71,7 +71,9 @@ export class Country extends Component {
             country={country}
             toggleSidebar={this.toggleSidebar} />
           <div>
-            <CountryView props={country} />
+            <CountryView 
+              country={country}
+              toggleSidebar={this.toggleSidebar} />
           </div>
         </div>
       );
