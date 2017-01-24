@@ -4,12 +4,14 @@ import nl2br from 'react-newline-to-break';
 import City from './city_item';
 
 // Clean some of the special characters that may be in the text
-const cleanText = (text) => {
+const cleanText = text => {
   return text.replace(/\\n/g, '\n').replace(/\n\n/g, '\n').replace(/\\"/g, '"');
 }
 
 // Render the cities of the given country
-const showCities = (cities) => {
+const showCities = cities => {
+  // Sort the cities
+  cities.sort();
   return cities.map((item) => {
     return (
       <City key={item} name={item} />

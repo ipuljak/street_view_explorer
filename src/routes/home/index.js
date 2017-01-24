@@ -69,9 +69,9 @@ class Home extends Component {
                             selecting a category type. Once you are on a city or category page, you may instantly select views
                             to be loaded in through a scrollable side menu. If you are on mobile, this menu can be accessed by
                             swiping left from the right edge.</p>
-                <Link to="/countries"><button className="btn btn-default btn-xl sr-button">Countries</button></Link>
-                <hr className="light" />
                 <Link to="/categories"><button className="btn btn-default btn-xl sr-button">Categories</button></Link>
+                <hr className="light" />
+                <Link to="/countries"><button className="btn btn-default btn-xl sr-button">Countries</button></Link>
               </div>
             </div>
           </div>
