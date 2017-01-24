@@ -5,7 +5,6 @@ import * as actions from '../../actions';
 
 import CountryView from './country_view';
 import Sidebar from './sidebar';
-import Footer from '../../core/Footer';
 import '../main/main.css';
 
 /** 
@@ -61,7 +60,6 @@ export class Country extends Component {
       return (
         <div>
           <h2>Loading...</h2>
-          <Footer />
         </div>
       );
     }
@@ -75,7 +73,6 @@ export class Country extends Component {
           <div>
             <CountryView props={country} />
           </div>
-          <Footer />
         </div>
       );
     }
