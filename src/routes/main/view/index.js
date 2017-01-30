@@ -29,7 +29,7 @@ class View extends Component {
             <FavoriteButton />
             <hr />
             <div className="view">
-              <Street view={currentView.view} />
+              <Street className="street-view" view={currentView.view} />
               <hr />
               <Info data={currentView.data} />
               <hr />

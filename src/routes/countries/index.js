@@ -31,7 +31,7 @@ class Countries extends Component {
             key={item.name}
             to={`/country/${item.name}`}
             style={{ textDecoration: 'none', color: 'black' }}>
-            <div className="col-lg-3 col-md-6">
+            <div className="col-lg-4 col-md-6">
               <div className="thumbnail">
                 <img src={item.data.image} alt="" />
                 <h4>{item.name}</h4>

@@ -103,7 +103,7 @@ export class Header extends Component {
             {this.renderModal()}
           </Modal.Body>
           <Modal.Footer>
-            The Street View Tourist
+            <i className="fa fa-street-view"></i> The Street View Tourist
           </Modal.Footer>
         </Modal>
       </div>

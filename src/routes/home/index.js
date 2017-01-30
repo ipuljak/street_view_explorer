@@ -49,7 +49,7 @@ class Home extends Component {
             <div className="header-content-inner">
               <h1 id="homeHeading"><i className="fa fa-street-view"></i> The Street View Tourist</h1>
               <hr />
-              <p>Tap, swipe, and scroll as you window shop your dream getaway!</p>
+              <p>Tap, swipe, and scroll your way around the world as The Street View Tourist!</p>
               <Scrollchor to="#about"><button className="btn btn-primary btn-xl btn-logo">Get Started</button></Scrollchor>
             </div>
           </div>
@@ -68,7 +68,7 @@ class Home extends Component {
                             for the locations of the world by selecting a country and then city, or you may search globally by
                             selecting a category type. Once you are on a city or category page, you may instantly select views
                             to be loaded in through a scrollable side menu. If you are on mobile, this menu can be accessed by
-                            swiping left from the right edge.</p>
+                            clicking the "Views" button.</p>
                 <Link to="/categories"><button className="btn btn-default btn-xl sr-button">Categories</button></Link>
                 <hr className="light" />
                 <Link to="/countries"><button className="btn btn-default btn-xl sr-button">Countries</button></Link>
@@ -81,39 +81,41 @@ class Home extends Component {
           <div className="container">
             <div className="row">
               <div className="col-lg-12 text-center">
-                <h2 className="section-heading">What this website offers...</h2>
+                <h2 className="section-heading">What The Street View Tourist offers...</h2>
                 <hr className="primary" />
               </div>
             </div>
           </div>
           <div className="container">
             <div className="row">
-              <div className="col-lg-3 col-md-6 text-center">
+              <div className="col-lg-6 col-md-6 text-center">
                 <div className="service-box">
                   <i className="fa fa-4x fa-street-view text-primary sr-icons"></i>
                   <h3>Explore the World</h3>
-                  <p className="text-muted">Harness the power of Google Street View and explore the world through our wonderfully categorized locations.</p>
+                  <p className="text-muted">Harness the power of Google Street View and explore the world through our wonderfully categorized locations. Our website makes discovering new locations easy. You can discover new places in many of our different countries and cities, but if you're unsure where you'd like to go, then you can look around through the many various category types.</p>
                 </div>
               </div>
-              <div className="col-lg-3 col-md-6 text-center">
+              <div className="col-lg-6 col-md-6 text-center">
                 <div className="service-box">
                   <i className="fa fa-4x fa-heart text-primary sr-icons"></i>
-                  <h3>Save your Favorites</h3>
-                  <p className="text-muted">Register for free to save all of your favorite locations and to be able to leave your comments.</p>
+                  <h3>Favorites & Comments</h3>
+                  <p className="text-muted">Registering to our website is free and easy! You'll be able to save your favorite locations and (in a future update) be able to revisit them through your profile. You can also leave a comment on each of the views where you may engage with the other community members.</p>
                 </div>
               </div>
-              <div className="col-lg-3 col-md-6 text-center">
+              </div>
+              <div className="row">
+              <div className="col-lg-6 col-md-6 text-center">
                 <div className="service-box">
                   <i className="fa fa-4x fa-globe text-primary sr-icons"></i>
                   <h3>Up to Date</h3>
-                  <p className="text-muted">We are always updating the database with more and more locations for you to explore and enjoy.</p>
+                  <p className="text-muted">We are always updating the database with more and more locations for you to explore and enjoy. All of our locations are manually inputted to ensure that each view is easily accessible in the Street View window and allows you to walk around and explore. A future update will allow users to submit their own locations and edit the content of existing ones.</p>
                 </div>
               </div>
-              <div className="col-lg-3 col-md-6 text-center">
+              <div className="col-lg-6 col-md-6 text-center">
                 <div className="service-box">
                   <i className="fa fa-4x fa-cogs text-primary sr-icons"></i>
                   <h3>Instant Loading</h3>
-                  <p className="text-muted">This website is a single page application powered by the React framework offering a fast and responsive browsing experience.</p>
+                  <p className="text-muted">This website is a single page application powered by the React framework offering a fast and responsive browsing experience. You may instantly change categories or countries, as well as switch from one view onto another through the sidebar.</p>
                 </div>
               </div>
             </div>

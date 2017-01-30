@@ -20,7 +20,7 @@ const Info = props => {
         <img
           src={data.image}
           role="presentation" />
-        <div>{data.source}</div>
+        <div className="">{data.source}</div>
       </div>
       <p>
         {nl2br(cleanText(data.info))}
