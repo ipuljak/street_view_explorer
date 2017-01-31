@@ -14,6 +14,9 @@ const Locations = item => {
       <div className="cityCountry capitalize">
         {item.props.location.city}, {item.props.location.country}
       </div>
+      <div className="detailedView">
+        {item.props.view.indoor ? '- Detailed View -' : ''}
+      </div>
     </div>
   );
 };

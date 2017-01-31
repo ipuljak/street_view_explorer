@@ -231,6 +231,12 @@ section {
   margin: 0 auto;
 }
 
+.detailedView {
+  font-size: .8em;
+  color: #6899c1;
+  margin: 5px 0 0 0;
+}
+
 .list-group-item {
   background: #FBFBFC;
   border-radius: 0;

@@ -85,7 +85,7 @@ class Signin extends Component {
           <div className="container">
           {this.renderAlert()}
           </div>
-          <button action="submit" className="btn btn-primary">Sign In</button>
+          <button action="submit" className="btn btn-primary">Submit</button>
         </form>
       </div>
     );
