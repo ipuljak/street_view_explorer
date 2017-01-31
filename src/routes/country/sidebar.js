@@ -21,7 +21,7 @@ class Sidebar extends Component {
     return (
       <div id="sidebar-wrapper">
         <ul className="sidebar-nav">
-          <p className="type-header capitalize">{country.country.name}</p>
+          <p className="type-header capitalize">{country.info.name}</p>
           {this.renderLocations(country.cities)}
         </ul>
       </div>

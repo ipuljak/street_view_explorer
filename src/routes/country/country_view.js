@@ -12,7 +12,7 @@ const cleanText = text => {
  */
 const CountryView = props => {
   const toggleSidebar = props.toggleSidebar;
-  const view = props.country.country;
+  const view = props.country.info;
   const info = cleanText(view.data.info);
 
   return (

@@ -10,6 +10,9 @@ let item = {
   location: {
     city: 'Toronto',
     country: 'Canada'
+  },
+  view: {
+    indoor: true
   }
 };
 
