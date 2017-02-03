@@ -2,6 +2,7 @@
 
 ## Table of Contents
 [About](#about)
+
 [Installation](#installation)
 
 ## About
@@ -9,14 +10,19 @@ The Street View Tourist is a full-stack project that I created starting in Decem
 
 ## Installation
 To install, run:
+
 `npm install`
 
 To run the tests:
+
 `npm run test`
 
 To run the development server:
+
 `npm start`
 
 To run the production server:
+
 `npm run build`
+
 and then serve the build files using the server of your choice.
