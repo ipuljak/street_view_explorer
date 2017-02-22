@@ -9,14 +9,14 @@ import * as actions from '../../actions';
  */
 const renderInput = field =>
   <div>
-    <input 
-      {...field.input} 
+    <input
+      {...field.input}
       className="sign-field"
       type={field.type}
       placeholder={field.placeholder} />
-        {field.meta.touched &&
-        field.meta.error &&
-        <span className="error">{field.meta.error}</span>}
+    {field.meta.touched &&
+      field.meta.error &&
+      <span className="error">{field.meta.error}</span>}
   </div>
 
 /**
@@ -83,7 +83,7 @@ class Signin extends Component {
           </div>
           <br />
           <div className="container">
-          {this.renderAlert()}
+            {this.renderAlert()}
           </div>
           <button action="submit" className="btn btn-primary">Submit</button>
         </form>

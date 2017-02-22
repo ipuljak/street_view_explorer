@@ -1,3 +1,4 @@
+// Load the state from the local storage
 export const loadState = () => {
   try {
     const serializedState = localStorage.getItem('state');
@@ -8,8 +9,9 @@ export const loadState = () => {
   } catch (err) {
     return undefined;
   }
-}
+};
 
+// Save the state to the local storage
 export const saveState = state => {
   try {
     const serializedState = JSON.stringify(state);
@@ -17,4 +19,4 @@ export const saveState = state => {
   } catch (err) {
     // Ignore write errors
   }
-}
+};

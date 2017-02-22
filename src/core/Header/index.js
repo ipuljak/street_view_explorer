@@ -16,9 +16,9 @@ import './header.css';
 export class Header extends Component {
   constructor() {
     super();
-    this.state = { 
+    this.state = {
       showModal: false,
-      modalType: null 
+      modalType: null
     };
 
     this.open = this.open.bind(this);
@@ -27,7 +27,7 @@ export class Header extends Component {
 
   // Open the appropriate modal type (signin vs signup)
   open(modalType) {
-    this.setState({ 
+    this.setState({
       showModal: true,
       modalType: modalType
     });
@@ -35,9 +35,9 @@ export class Header extends Component {
 
   // Close the modal
   close() {
-    this.setState({ 
+    this.setState({
       showModal: false,
-      modalType: null 
+      modalType: null
     });
   }
 

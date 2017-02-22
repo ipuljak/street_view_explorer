@@ -1,15 +1,18 @@
+// Main index requirements
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import reduxThunk from 'redux-thunk';
-import reducers from './reducers';
 import throttle from 'lodash/throttle';
+
+// Main requirements to handle state
 import { AUTH_USER, AUTH_NAME } from './actions/types';
+import reducers from './reducers';
 import { saveState } from './localStorage';
 
-// Components to route
+// Main index components
 import App from './core';
 import Home from './routes/home';
 import Privacy from './routes/footer/privacy';
@@ -18,13 +21,14 @@ import Categories from './routes/categories';
 import Country from './routes/country';
 import Main from './routes/main';
 
+// Create the redux store
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
 
 const token = localStorage.getItem('token');
 
+//// Let our application know the user is authenticated if a token exists
 if (token) {
-  // Let our application know the user is authenticated if a token exists
   store.dispatch({ type: AUTH_USER });
   store.dispatch({
     type: AUTH_NAME,
@@ -34,12 +38,12 @@ if (token) {
 
 // Add a listener for our store to be saved to localStorage
 store.subscribe(throttle(() => {
-  //saveState(store.getState());
   saveState({
     auth: store.getState().auth
   });
 }, 1000));
 
+// Render the application into the index.html file
 ReactDOM.render(
   <Provider store={store}>
     <Router onUpdate={() => window.scrollTo(0, 0)} history={browserHistory}>

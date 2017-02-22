@@ -12,7 +12,7 @@ import {
 /**
  *  Main street_view reducer
  */
-export default function (state = {}, action) {
+export default (state = {}, action) => {
   switch (action.type) {
     // Set types to be the categories/countries retrieved from the API
     case FETCH_TYPES:
@@ -29,13 +29,6 @@ export default function (state = {}, action) {
     // Set comments to be the comments of the currently selected view
     case CURRENT_COMMENTS:
       return {...state, comments: action.payload };
-    // Remove a comment that a user has posted
-    // case DELETE_COMMENT:
-    //   var cIndex = state.comments.indexOf(action.payload);
-    //   if (cIndex > -1) {
-    //     state.comments.splice(cIndex, 1);
-    //   }
-    //   return {...state, comments: [...state.comments] };
     // Set favorites to be a list of the user's favorite views
     case USER_FAVORITES:
       return {...state, favorites: action.payload };
@@ -44,7 +37,7 @@ export default function (state = {}, action) {
       return {...state, favorites: [...state.favorites, action.payload] };
     // Remove a favorite into the list of a user's favorite views
     case REMOVE_FAVORITE:
-      var fIndex = state.favorites.indexOf(action.payload);
+      let fIndex = state.favorites.indexOf(action.payload);
       if (fIndex > -1) {
         state.favorites.splice(fIndex, 1);
       }
@@ -52,4 +45,4 @@ export default function (state = {}, action) {
     default:
       return state;
   }
-}
+};

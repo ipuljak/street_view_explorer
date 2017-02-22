@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 /**
  *  Higher order component which is responsible for client-side authentication
  */
-export default function (ComposedComponent) {
+export default ComposedComponent = () => {
 
   class Authentication extends Component {
     static contextTypes = {
@@ -32,9 +32,9 @@ export default function (ComposedComponent) {
     }
   }
 
-  function mapStateToProps(state) {
+  const mapStateToProps = state => {
     return { authenticated: state.auth.authenticated };
-  }
+  };
 
   return connect(mapStateToProps)(Authentication);
-}
+};
