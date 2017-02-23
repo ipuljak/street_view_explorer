@@ -1,7 +1,7 @@
 import reducer from '../../src/reducers/street_view_reducer';
 import * as types from '../../src/actions/types';
 
-describe('Auth Reducer', () => {
+describe('Street View Reducer', () => {
   it('should return the initial state', () => {
     expect(
       reducer(undefined, {})

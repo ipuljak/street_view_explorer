@@ -81,7 +81,7 @@ describe('Auth Actions', () => {
       expect(actions.authError(error).type).toEqual(types.AUTH_ERROR);
     });
 
-    it('it should have the correct payload', () => {
+    it('should have the correct payload', () => {
       expect(actions.authError(error).payload).toEqual(error);
     });
   });

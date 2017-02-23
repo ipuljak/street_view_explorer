@@ -200,7 +200,7 @@ The following are the various actions that can be dispatched throughout the appl
 #### Authentication
 
 ##### authError
-Sets the state to AUTH_ERROR to indicate if an error occured during an authentication API call.
+Sets the state to indicate if an error occured during an authentication API call. Dispatches AUTH_ERROR.
 
 ##### signinUser
 Authenticates and signs in a user given a username and password. Makes an API call to:  
@@ -211,56 +211,74 @@ Dispatches AUTH_USER and AUTH_NAME.
 
 ##### signupUser
 Registers a user given a unique username and password. Makes an API call to:  
+
 `http://localhost:3001/api/street_view/auth/signup`
 
+Dispatches AUTH_USER and AUTH_NAME.
+
 ##### signoutUser
-Signs the user out.
+Signs the user out. Dispatches UNAUTH_USER.
 
 #### Street View
 
 ##### fetchTypes
-Sets the types of the existing views in the state.
+Sets the types of the existing views in the state. Dispatches FETCH_TYPES.
 
 ##### getDistincts
-Fetches all of the distinct categories of locations from the API server. Makes an API call to:  
+Fetches all of the distinct categories of locations from the API server. Makes an API call to:
+
 `http://localhost:3001/api/street_view/info/get_distincts`
 
+Dispatches to fetchTypes.
+
 ##### setCountry
-Given a country, fetches its information and cities. Makes an API call to:  
-`http://localhost:3001/api/street_view/info/get_country_info?country=[COUNTRY]`  
-where COUNTRY is the desired country.
+Given a country, fetches its information and cities. Makes an API call to
+
+`http://localhost:3001/api/street_view/info/get_country_info?country=[COUNTRY]`
+  
+where COUNTRY is the desired country. Dispatches CURRENT_COUNTRY.
 
 ##### searchLocations
-Returns a list of locations given a search term (city, type, etc.). Makes an API call to:  
-`http://localhost:3001/api/street_view/info/search_locations?search=[TERM]`  
-where TERM is a search parameter such as a city (Ottawa, Toronto) or type (building, church).
+Returns a list of locations given a search term (city, type, etc.). Makes an API call to:
+
+`http://localhost:3001/api/street_view/info/search_locations?search=[TERM]`
+
+where TERM is a search parameter such as a city (Ottawa, Toronto) or type (building, church). Dispatches VIEWS_BY_TYPE.
 
 ##### setView
-Sets the current view in the state.
+Sets the current view in the state. Dispatches CURRENT_VIEW.
 
 #### Commenting
 
 ##### getComments
-Returns a list of comments given a view ID. Makes an API call to:  
-`http://localhost:3001/api/street_view/comments/get_comments?id=[ID]`  
-where ID is the unique identifier to a view.
+Returns a list of comments given a view ID. Makes an API call to:
+
+`http://localhost:3001/api/street_view/comments/get_comments?id=[ID]`
+
+where ID is the unique identifier to a view. Dispatches CURRENT_COMMENTS.
 
 #### Favoriting
 
 ##### getFavorites
-Returns a list of a user's favorite views given their username. Makes an API call to:  
-`http://localhost:3001/api/street_view/favorites/get_favorites?username=[USERNAME]`  
-where USERNAME is the desired user's username.
+Returns a list of a user's favorite views given their username. Makes an API call to:
+
+`http://localhost:3001/api/street_view/favorites/get_favorites?username=[USERNAME]`
+
+where USERNAME is the desired user's username. Dispatches USER_FAVORITES.
 
 ##### favorite
-Add a favorite view to an authenticated user given a view ID. Makes an API call to:  
-`http://localhost:3001/api/street_view/favorites/add_favorite?id=[ID]`  
-where ID is the unique identifier to a view. The user's username is passed through the request body.
+Add a favorite view to an authenticated user given a view ID. Makes an API call to:
+
+`http://localhost:3001/api/street_view/favorites/add_favorite?id=[ID]`
+
+where ID is the unique identifier to a view. The user's username is passed through the request body. Dispatches ADD_FAVORITE.
 
 ##### unfavorite
-Removes a favorite view from an authenticated user given a view ID. Makes an API call to:  
-`http://localhost:3001/api/street_view/favorites/remove_favorite?id=[ID]`  
-where ID is the unique identifier to a view. The user's username is passed through the request body.
+Removes a favorite view from an authenticated user given a view ID. Makes an API call to:
+
+`http://localhost:3001/api/street_view/favorites/remove_favorite?id=[ID]`
+
+where ID is the unique identifier to a view. The user's username is passed through the request body. Dispatches REMOVE_FAVORITE.
 
 ### Reducers
 The following are the reducers that are used to form the Redux state throughout the application:
@@ -269,43 +287,196 @@ The following are the reducers that are used to form the Redux state throughout 
 Cases: 
 
 ##### AUTH_USER
-If the user has been authorized, flag authenticated to true.
+If the user has been authorized, flags authenticated to true.
 
 ##### AUTH_NAME
-If the user has been authorized, add their username to the state.
+If the user has been authorized, adds their username to the state.
 
 ##### UNAUTH_USER
-If the user has been unauthorized, flag authenticated to false.
+If the user has been unauthorized, flags authenticated to false.
 
 ##### AUTH_ERROR
-If there is an error with the authentication, set an error message
+If there is an error with the authentication, sets an error message.
 
+#### Street View Reducer
+Cases:
 
-  * [File Structure](#file-structure)
-  * [App Components](#app-components)
-    * [App](#app)
-    * [Auth](#auth)
-    * [Header](#header)
-    * [Footer](#footer)
-  * [Routes](#routes)
-    * [Home](#home)
-    * [Categories](#categories)
-    * [Countries](#countries)
-    * [Country](#country)
-    * [Main](#main)
-    * [Footer](#footer)
-  * [Actions](#actions)
-    * [Authentication](#authentication)
-    * [Street View](#street-view)
-    * [Commenting](#commenting)
-    * [Favoriting](#favoriting)
-  * [Reducers](#reducers)
-    * [Authentication Reducer](#authentication-reducer)
-    * [Street View Reducer](#street-view-reducer)
-  * [Testing](#testing)
-    * [Action Tests](#action-tests)
-    * [Reducer Tests](#reducer-tests)
-    * [Component Tests](#component-tests)
+##### FETCH_TYPES
+Sets types to be the categories/countries retrieved from the API.
+
+##### VIEWS_BY_TYPE
+Sets allViews to be the list of available views once given a category/country.
+
+##### CURRENT_COUNTRY
+Sets country to be country retrieved from the API.
+
+##### CURRENT_VIEW
+Sets view to be the currently selected view.
+
+##### CURRENT_COMMENTS
+Sets comments to be the comments of the currently selected view.
+
+##### USER_FAVORITES
+Sets favorites to be a list of the user's favorite views.
+
+##### ADD_FAVORITE
+Adds a favorite into the list of a user's favorite views.
+
+##### REMOVE_FAVORITE
+Removes a favorite into the list of a user's favorite views.
+
+### Testing
+The following is what is covered by unit tests. The tests are written using Jest, Enzyme, and Sinon.
+
+#### Component Tests
+
+##### App Tests
+App...
+* renders the app.
+
+##### Categories Tests
+Categories...
+* renders the container.
+* contains a footer.
+* scrolled to the top when it was loaded.
+* has the correct title.
+
+Category Links...
+* renders 3 category links.
+* Bridge links to /location/bridge.
+* Bridge contains an image.
+
+##### Countries Tests
+Countries...
+* renders the container.
+* contains a footer.
+* scrolled to the top when it was loaded.
+* has the correct title.
+
+Country Links...
+* renders 3 country links.
+* Canada links to /country/Canada.
+* Canada contains an image.
+
+##### Country Tests
+Country...
+* renders the container.
+* shows the correct title.
+* renders an image for the country.
+* inserted a line break for the newline.
+* links to the correct data source.
+
+##### Country Sidebar Tests
+Country Sidebar...
+* renders the component.
+* renders a Link to /location/Ottawa.
+
+##### Footer Tests
+Footer...
+* renders the component.
+* contains an actual footer.
+* renders a link to the privacy policy.
+* link to privacy policy is named correctly.
+
+##### Header Tests
+Header...
+* renders the container.
+* renders an IndexLinkContainer to '/'.
+* renders a NavItem with the text 'Home'.
+* renders a LinkContainer to '/categories'.
+* renders a NavItem with the text 'Categories'.
+* does not initially display a modal.
+
+When a user goes to sign up...
+* sets showModal state to be true when the sign in button is clicked.
+* shows a modal when the sign in button is clicked.
+
+When not authenticated...
+* shows the user a sign in NavItem.
+* does not show the user a sign out NavItem.
+
+##### Home Tests
+Home...
+* renders the container.
+* contains a footer.
+* scrolled to the top when it was loaded.
+
+##### Info Tests
+Info...
+* renders the component.
+* contains a single image.
+* contains info to be shown.
+* removes newlines from the info.
+
+##### Locations Tests
+Locations...
+* renders the component.
+* contains the item name.
+* contains the item data.
+
+##### Privacy Tests
+Privacy...
+* renders the component.
+* contains a privacy policy.
+* has a footer.
+
+##### Sidebar Tests
+Sidebar...
+* renders the component.
+* has two Locations items.
+
+Views...
+* are clickable.
+
+##### Signin Tests
+Signin...
+* renders the container.
+* contains a Redux Form.
+
+##### Signup Tests
+* renders the container.
+* contains a Redux Form.
+
+#### Action Tests
+
+##### Auth Actions
+signinUser...
+* should create an AUTH_USER action.
+
+signoutUser...
+* should create an UNAUTH_USER action.
+* should remove a token from localStorage.
+* should handle an empty token special case.
+
+authError...
+* should create an AUTH_ERROR action.
+* should have the correct payload.
+
+##### Street View Actions
+This section remains unfinished due to problems integrating axios with nock for action testing.
+
+#### Reducer Tests
+
+##### Auth Reducer
+Auth Reducer...
+* should return the initial state.
+* should handle AUTH_USER.
+* should handle AUTH_NAME.
+* should handle UNAUTH_USER without data.
+* should handle UNAUTH_USER with data.
+* should handle AUTH_ERROR.
+
+Street View Reducer...
+* should return the initial state.
+* should handle FETCH_TYPES.
+* should handle VIEWS_BY_TYPE.
+* should handle CURRENT_COUNTRY.
+* should handle CURRENT_VIEW.
+* should handle CURRENT_COMMENTS.
+* should handle DELETE_COMMENT.
+* should handle USER_FAVORITES.
+* should handle ADD_FAVORITE.
+* should handle REMOVE_FAVORITE.
 
 ## About Me  
 I'm a computer science graduate looking to break into the world of professional software and web development. For more information about me, visit my website at [puljak.ca](https://puljak.ca)!
