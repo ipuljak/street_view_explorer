@@ -204,7 +204,8 @@ Sets the state to AUTH_ERROR to indicate if an error occured during an authentic
 
 ##### signinUser
 Authenticates and signs in a user given a username and password. Makes an API call to:  
-`http://localhost:3001/api/street_view/auth/signin`
+`http://localhost:3001/api/street_view/auth/signin`  
+Dispatches AUTH_USER and AUTH_NAME.
 
 ##### signupUser
 Registers a user given a unique username and password. Makes an API call to:  
@@ -263,7 +264,19 @@ where ID is the unique identifier to a view. The user's username is passed throu
 The following are the reducers that are used to form the Redux state throughout the application:
 
 #### Authentication Reducer
+Cases: 
 
+##### AUTH_USER
+If the user has been authorized, flag authenticated to true.
+
+##### AUTH_NAME
+If the user has been authorized, add their username to the state.
+
+##### UNAUTH_USER
+If the user has been unauthorized, flag authenticated to false.
+
+##### AUTH_ERROR
+If there is an error with the authentication, set an error message
 
 
   * [File Structure](#file-structure)
