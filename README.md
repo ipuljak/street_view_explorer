@@ -204,7 +204,9 @@ Sets the state to AUTH_ERROR to indicate if an error occured during an authentic
 
 ##### signinUser
 Authenticates and signs in a user given a username and password. Makes an API call to:  
+
 `http://localhost:3001/api/street_view/auth/signin`  
+
 Dispatches AUTH_USER and AUTH_NAME.
 
 ##### signupUser
