@@ -8,11 +8,11 @@ import * as actions from '../../actions';
 import Footer from '../../core/Footer';
 
 /**
- *  Welcome class component 
+ *  Home class container 
  *    -> Serves as the home page for the website
  *       Renders a title and slogan, as well as two separate types of views:
  * 
- *      - Location Types
+ *      - Categories
  *          which is a list of types of locations or structures that the 
  *          website is structured by and that the user can further explore
  *          when clicked. Links to /location/:type route.
