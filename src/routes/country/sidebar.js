@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 
+/**
+ *  Sidebar class component
+ *    -> Renders the sidebar for navigating a country's cities
+ */
 class Sidebar extends Component {
-  // Show all of the possible locations in the sidebar depending on the view types selected
+  // Show all of the possible cities in the sidebar
   renderLocations(cities) {
-    // Sort the cities
+    // Sort the cities alphabetically
     cities.sort();
     return cities.map((city) => {
       return (

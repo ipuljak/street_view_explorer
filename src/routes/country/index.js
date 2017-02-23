@@ -18,10 +18,10 @@ const loadData = props => {
 }
 
 /**
- *  Class component Country which loads and then renders the desired country 
- *  given a country paramater (term) from the Link route on the homepage or 
- *  manually entered in the url by the user.
- *      i.e. /country/:term
+ *  Country class component
+ *    -> Loads and then renders the desired country 
+ *       given a country paramater (term) from the Link route on the homepage or 
+ *       manually entered in the url by the user (i.e. /country/:term)
  */
 export class Country extends Component {
   static propTypes = {
@@ -86,6 +86,6 @@ const mapStateToProps = (state, ownProps) => {
     country: state.streetView.country,
     term: ownProps.params.country
   };
-}
+};
 
 export default connect(mapStateToProps, actions)(Country);

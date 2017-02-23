@@ -3,16 +3,17 @@ import React from 'react';
 import Comment from './comment';
 
 /**
- *  Functional component which displays a list of Comment components
+ *  CommentList functional component 
+ *    -> Displays a list of Comment components
  */
 const CommentList = props => {
   return (
     <div>
       {props.comments.map(item =>
-        <Comment 
-          key={item._id} 
-          comment={item} 
-          getComments={props.getComments} 
+        <Comment
+          key={item._id}
+          comment={item}
+          getComments={props.getComments}
           authenticated={props.authenticated} />
       )}
     </div>

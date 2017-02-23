@@ -4,6 +4,10 @@ import './privacy.css';
 
 import Footer from '../../../core/Footer';
 
+/**
+ *  Privacy functional component
+ *    -> Renders the privacy statement for The Street View Tourist website
+ */
 const Privacy = () => {
   return (
     <div>

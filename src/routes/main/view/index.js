@@ -6,12 +6,13 @@ import Comments from './comments';
 import FavoriteButton from './favorite';
 
 /**
- *  Component which renders the entire view. Displays:
- *    - A button to toggle the sidebar
- *    - The title
- *    - The street view panorama window
- *    - The view's information (picture and text)
- *    - The comments section
+ *  View class component 
+ *    -> Renders the entire view. Displays:
+ *       - A button to toggle the sidebar
+ *       - The title
+ *       - The street view panorama window
+ *       - The view's information (picture and text)
+ *       - The comments section
  */
 class View extends Component {
   render() {
@@ -22,7 +23,12 @@ class View extends Component {
         <div className="row">
           <div className="col-lg-12">
             <div className="view-menu visible-xs">
-              <button onClick={() => {toggleSidebar()}} className="btn btn-primary pull-left viewBtn" id="menu-toggle">Views</button>
+              <button
+                onClick={() => { toggleSidebar() } }
+                className="btn btn-primary pull-left viewBtn"
+                id="menu-toggle">
+                Views
+              </button>
               <br />
             </div>
             <h2>{currentView.name}</h2>

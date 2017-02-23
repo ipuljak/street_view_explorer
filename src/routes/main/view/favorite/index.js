@@ -1,9 +1,10 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import * as actions from '../../../../actions';
 
 /**
- *  Container which is responsible for displaying the favorite button
+ *  FavoriteButton class container 
+ *    -> Responsible for displaying the favorite button
  */
 class FavoriteButton extends Component {
   // Check that the user is authenticated and grab their favorites
@@ -43,11 +44,23 @@ class FavoriteButton extends Component {
 
     if (favorites.indexOf(currentView._id) > -1) {
       return (
-        <button onClick={() => {this.unfavorite()}} className="btn btn-primary" id="fav-button"><span className="fa fa-heart"></span> Unfavorite</button>
+        <button
+          onClick={() => { this.unfavorite() } }
+          className="btn btn-primary"
+          id="fav-button">
+          <span className="fa fa-heart"></span>
+          Unfavorite
+        </button>
       );
     } else {
       return (
-        <button onClick={() => {this.favorite()}} className="btn btn-primary" id="fav-button"><span className="fa fa-heart"></span> Favorite</button>
+        <button
+          onClick={() => { this.favorite() } }
+          className="btn btn-primary"
+          id="fav-button">
+          <span className="fa fa-heart"></span>
+          Favorite
+        </button>
       );
     }
   }
@@ -72,6 +85,6 @@ const mapStateToProps = state => {
     authenticated: state.auth.authenticated,
     username: state.auth.username
   };
-}
+};
 
 export default connect(mapStateToProps, actions)(FavoriteButton);

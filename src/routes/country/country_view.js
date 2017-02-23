@@ -7,8 +7,9 @@ const cleanText = text => {
 }
 
 /**
- *  Functional component that renders a list of cities of a country as well as
- *  a photograph and some information about itself.
+ *  CountryView functional component 
+ *    -> Renders a list of cities of a country and a photograph 
+ *       and some information about itself
  */
 const CountryView = props => {
   const toggleSidebar = props.toggleSidebar;
@@ -20,7 +21,7 @@ const CountryView = props => {
       <div className="row">
         <div className="col-lg-12">
           <div className="view-menu visible-xs">
-            <button onClick={() => {toggleSidebar()}} className="btn btn-primary pull-left viewBtn" id="menu-toggle">Explore Cities</button>
+            <button onClick={() => { toggleSidebar() } } className="btn btn-primary pull-left viewBtn" id="menu-toggle">Explore Cities</button>
             <br />
           </div>
           <h2>{view.name}</h2>
@@ -42,6 +43,6 @@ const CountryView = props => {
       </div>
     </div>
   );
-}
+};
 
 export default CountryView;

@@ -7,7 +7,8 @@ import * as actions from '../../actions';
 import Footer from '../../core/Footer';
 
 /**
- *  Countries container which fetches and displays every category type in the database
+ *  Countries container component
+ *    -> Fetches and displays every category type in the database
  */
 class Countries extends Component {
   // If the types (categories/countries) have not been loaded yet, then fetch them from the database
@@ -65,6 +66,6 @@ const mapStateToProps = state => {
   return {
     types: state.streetView.types
   }
-}
+};
 
 export default connect(mapStateToProps, actions)(Countries);

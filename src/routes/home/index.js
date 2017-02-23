@@ -8,8 +8,9 @@ import * as actions from '../../actions';
 import Footer from '../../core/Footer';
 
 /**
- *  class component Welcome which serves as the homepage for the website. 
- *  Renders a title and slogan, as well as two separate types of views:
+ *  Welcome class component 
+ *    -> Serves as the home page for the website
+ *       Renders a title and slogan, as well as two separate types of views:
  * 
  *      - Location Types
  *          which is a list of types of locations or structures that the 
@@ -102,8 +103,8 @@ class Home extends Component {
                   <p className="text-muted">Registering to our website is free and easy! You'll be able to save your favorite locations and (in a future update) be able to revisit them through your profile. You can also leave a comment on each of the views where you may engage with the other community members.</p>
                 </div>
               </div>
-              </div>
-              <div className="row">
+            </div>
+            <div className="row">
               <div className="col-lg-6 col-md-6 text-center">
                 <div className="service-box">
                   <i className="fa fa-4x fa-globe text-primary sr-icons"></i>
@@ -131,6 +132,6 @@ const mapStateToProps = state => {
   return {
     types: state.streetView.types
   }
-}
+};
 
 export default connect(mapStateToProps, actions)(Home);

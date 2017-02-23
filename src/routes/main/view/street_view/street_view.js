@@ -29,75 +29,75 @@ SOFTWARE.
 
 class ReactStreetview extends React.Component {
 
-	constructor() {
-		super();
-		this.state = {
-			streetView: null,
-			domElementId: 'street-view'
-		};
-	}
+  constructor() {
+    super();
+    this.state = {
+      streetView: null,
+      domElementId: 'street-view'
+    };
+  }
 
-	update(canvas, mapProps) {
-		const googleMaps = mapProps.googleMaps;
+  update(canvas, mapProps) {
+    const googleMaps = mapProps.googleMaps;
 
-		const sv = new googleMaps.StreetViewPanorama(
-			canvas,
-			mapProps.streetViewPanoramaOptions
-		);
+    const sv = new googleMaps.StreetViewPanorama(
+      canvas,
+      mapProps.streetViewPanoramaOptions
+    );
 
-		this.setState({ streetView: sv });
-	}
+    this.setState({ streetView: sv });
+  }
 
-	initialize(canvas) {
-		if (this.props.googleMaps && this.state.streetView == null) {
-			this.update(canvas, this.props);
-		}
-	}
+  initialize(canvas) {
+    if (this.props.googleMaps && this.state.streetView == null) {
+      this.update(canvas, this.props);
+    }
+  }
 
-	componentDidMount() {
-		this.initialize(ReactDOM.findDOMNode(this));
-	}
+  componentDidMount() {
+    this.initialize(ReactDOM.findDOMNode(this));
+  }
 
-	componentDidUpdate() {
-		this.initialize(ReactDOM.findDOMNode(this));
-	}
+  componentDidUpdate() {
+    this.initialize(ReactDOM.findDOMNode(this));
+  }
 
-	componentWillReceiveProps(nextProps) {
-		this.update(ReactDOM.findDOMNode(this), nextProps);
-	}
+  componentWillReceiveProps(nextProps) {
+    this.update(ReactDOM.findDOMNode(this), nextProps);
+  }
 
-	render() {
-		return <div
-			style={{
-				height: '100%'
-			}}
-			id={this.state.domElementId}
-			></div>;
-	}
+  render() {
+    return <div
+      style={{
+        height: '100%'
+      }}
+      id={this.state.domElementId}
+      ></div>;
+  }
 }
 
 ReactStreetview.propTypes = {
-	apiKey: React.PropTypes.string.isRequired,
-	streetViewPanoramaOptions: React.PropTypes.object.isRequired
+  apiKey: React.PropTypes.string.isRequired,
+  streetViewPanoramaOptions: React.PropTypes.object.isRequired
 };
 
 ReactStreetview.defaultProps = {
-	streetViewPanoramaOptions: {
-		position: { lat: 46.9171876, lng: 17.8951832 },
-		pov: { heading: 0, pitch: 0 },
-		zoom: 1
-	}
+  streetViewPanoramaOptions: {
+    position: { lat: 46.9171876, lng: 17.8951832 },
+    pov: { heading: 0, pitch: 0 },
+    zoom: 1
+  }
 };
 
 function mapScriptsToProps(props) {
-	const googleMapsApiKey = props.apiKey;
-	return {
-		googleMaps: {
-			globalPath: 'google.maps',
-			url: 'https://maps.googleapis.com/maps/api/js?key=' + googleMapsApiKey,
-			jsonp: true
-		}
-	};
+  const googleMapsApiKey = props.apiKey;
+  return {
+    googleMaps: {
+      globalPath: 'google.maps',
+      url: 'https://maps.googleapis.com/maps/api/js?key=' + googleMapsApiKey,
+      jsonp: true
+    }
+  };
 }
 
 export default asyncLoading(mapScriptsToProps)(ReactStreetview);

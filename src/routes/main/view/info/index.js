@@ -9,7 +9,8 @@ const cleanText = text => {
 };
 
 /**
- *  Functional component Info which displays an image and text related to the current view.
+ *  Info functional component 
+ *    -> Displays an image and text related to the current view
  */
 const Info = props => {
   const {data} = props;

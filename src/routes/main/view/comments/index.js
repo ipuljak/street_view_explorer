@@ -8,7 +8,8 @@ import CommentList from './comment_list';
 import './comments.css';
 
 /**
- *  Class container Comments which is responsible for rendering the appropriate logic for comments for each view
+ *  Comments class container 
+ *    -> Responsible for rendering the appropriate logic for comments for each view
  */
 class Comments extends Component {
   static propTypes = {
@@ -62,13 +63,12 @@ class Comments extends Component {
       return <div>No comments to display!</div>
     }
     return (
-      <CommentList 
-        comments={currentComments} 
-        getComments={getComments} 
+      <CommentList
+        comments={currentComments}
+        getComments={getComments}
         authenticated={authenticated} />
     );
   }
-
 
   render() {
     return (

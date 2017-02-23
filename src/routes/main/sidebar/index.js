@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 
 import Locations from './locations';
 
+/**
+ *  Sidebar class component
+ *    -> Renders the sidebar for navigating individual views
+ */
 class Sidebar extends Component {
   // If the user requests a new view, load it and its comments in
   setNextView(item) {

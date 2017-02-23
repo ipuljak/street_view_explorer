@@ -6,11 +6,12 @@ import ReactStreetview from './street_view';
 
 
 /**
- *  Functional component that contains the structure of the street view window.
- *  All of the parameters for the desired location are passed through here.
- *  The options to be included for Google's API can be set here.
+ *  Street functional component that 
+ *    -> Contains the structure of the street view window
+ *       All of the parameters for the desired location are passed through here
+ *       The options to be included for Google's API can be set here
  *  
- *  TO DO:
+ *    TO DO:
  *      find a way to include a clickable mini-map on the street view window
  */
 const Street = item => {
@@ -30,7 +31,7 @@ const Street = item => {
     addressControl: false,
     motionTracking: false
   };
-  
+
   return (
     <div style={{
       margin: '0 auto',

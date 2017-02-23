@@ -17,9 +17,10 @@ const fieldSorter = fields => {
 }
 
 /**
- *  Class component Type which acts as a container listening for changes in:
- *      - allViews (the list of views that should be rendered on the page)
- *      - currentView (the currently desired view to be rendered)
+ *  Main class contanier 
+ *    -> Acts as a container listening for changes in:
+ *       - allViews (the list of views that should be rendered on the page)
+ *       - currentView (the currently desired view to be rendered)
  */
 class Main extends Component {
   // Load the data in immediately
@@ -45,7 +46,6 @@ class Main extends Component {
       getComments(sortedLocations[0]._id)
       return false;
     }
-
     return true;
   }
 
@@ -60,13 +60,13 @@ class Main extends Component {
 
     return (
       // Check the page has views to display
-      !allViews || 
+      !allViews ||
       // Check that the city location matches the URL if it's a city term
       (allViews[0].location.city.toLowerCase() !== params.term.toLowerCase() &&
-      // Check that the type location matches the URL if it's a type term
-      allViews[0].type !== params.term && 
-      // Check that the term is not a landmark
-      params.term !== 'landmark'));
+        // Check that the type location matches the URL if it's a type term
+        allViews[0].type !== params.term &&
+        // Check that the term is not a landmark
+        params.term !== 'landmark'));
   }
 
   render() {

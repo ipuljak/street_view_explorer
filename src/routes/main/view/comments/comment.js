@@ -3,7 +3,8 @@ import axios from 'axios';
 import moment from 'moment';
 
 /**
- *  Class component which displays comments made on the given view
+ *  Comment class component 
+ *    -> Displays comments made on the given view
  */
 class Comment extends Component {
   // Delete a comment from the view
