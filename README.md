@@ -479,4 +479,4 @@ Street View Reducer...
 * should handle REMOVE_FAVORITE.
 
 ## About Me  
-I'm a computer science graduate looking to break into the world of professional software and web development. For more information about me, visit my website at [puljak.ca](https://puljak.ca)!
+I'm a computer science graduate working as a software developer at [JoeZoo Inc.](https://getjoezoo.com/). For more information about me, visit my website at [puljak.ca](https://puljak.ca)!
