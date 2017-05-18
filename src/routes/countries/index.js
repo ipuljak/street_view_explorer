@@ -49,7 +49,7 @@ class Countries extends Component {
       <div>
         <div className="container">
           <div className="col-lg-12">
-            <h2>Countries of the World</h2>
+            <h2>{Countries.Constants._en.Title}</h2>
             <hr className="primary" />
           </div>
           <div className="row">
@@ -61,6 +61,12 @@ class Countries extends Component {
     );
   }
 }
+
+Countries.Constants = {
+  _en: {
+    Title: "Countries of the World"
+  }
+};
 
 const mapStateToProps = state => {
   return {

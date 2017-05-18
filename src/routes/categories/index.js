@@ -49,7 +49,7 @@ class Categories extends Component {
       <div>
         <div className="container">
           <div className="col-lg-12">
-            <h2 className="section-heading">Global Categories</h2>
+            <h2 className="section-heading">{Categories.Constants._en.Title}</h2>
             <hr className="primary" />
           </div>
           <div className="row">
@@ -61,6 +61,12 @@ class Categories extends Component {
     );
   }
 }
+
+Categories.Constants = {
+  _en: {
+    Title: "Global Categories"
+  }
+};
 
 const mapStateToProps = state => {
   return {

@@ -59,7 +59,7 @@ export class Country extends Component {
       // FUTURE UPDATE: render an animated loading icon instead
       return (
         <div>
-          <h2>Loading...</h2>
+          <h2>{Country.Constants._en.LoadingMessage}</h2>
         </div>
       );
     }
@@ -80,6 +80,12 @@ export class Country extends Component {
     }
   }
 }
+
+Country.Constants = {
+  _en: {
+    LoadingMessage: "Loading..."
+  }
+};
 
 const mapStateToProps = (state, ownProps) => {
   return {
