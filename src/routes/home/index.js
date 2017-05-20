@@ -48,10 +48,10 @@ class Home extends Component {
         <div id="header">
           <div className="header-content">
             <div className="header-content-inner">
-              <h1 id="homeHeading"><i className="fa fa-street-view"></i> The Street View Tourist</h1>
+              <h1 id="homeHeading"><i className="fa fa-street-view"></i> {Home.Constants.Header.Title}</h1>
               <hr />
-              <p>Tap, swipe, and scroll your way around the world as The Street View Tourist!</p>
-              <Scrollchor to="#about"><button className="btn btn-primary btn-xl btn-logo">Get Started</button></Scrollchor>
+              <p>{Home.Constants.Header.Subtitle}</p>
+              <Scrollchor to="#about"><button className="btn btn-primary btn-xl btn-logo">{Home.Constants.Header.Button}</button></Scrollchor>
             </div>
           </div>
         </div>
@@ -127,6 +127,18 @@ class Home extends Component {
     );
   }
 }
+
+Home.Constants = {
+  Header: {
+    Title: "The Street View Tourist",
+    Subtitle: "Tap, swipe, and scroll your way around the world as The Street View Tourist!",
+    Button: "Get Started"
+  },
+
+  Sections: {
+
+  }
+};
 
 const mapStateToProps = state => {
   return {
